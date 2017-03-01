@@ -48,9 +48,6 @@ class Manager {
   handleFillMount({ detail: { fill }}) {
     const elements = React.Children.toArray(fill.props.children);
     const name = fill.props.name;
-
-    // debugger;
-
     const component = { fill, elements, name };
 
     // If the name is already registered
@@ -104,11 +101,11 @@ class Manager {
     if (this._db.byName[name].listeners.length === 0 &&
       this._db.byName[name].components.length === 0) {
       delete this._db.byName[name];
+    } else {
+      // notify listeners
+      this._db.byName[name].listeners.forEach(fn =>
+        fn(this._db.byName[name].components));
     }
-
-    // notify listeners
-    this._db.byName[name].listeners.forEach(fn =>
-      fn(this._db.byName[name].components));
   }
 
   /**
