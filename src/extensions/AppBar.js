@@ -20,25 +20,32 @@ const style = {
 class AppBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { primarySelection: null };
+    this.state = { selection: null };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(target) {
-    target.props.onEnter();
+    if (this.state.selection === target) {
+      target.props.onExit();
+      this.setState({ selection: null });
+    } else {
+      target.props.onEnter();
 
-    // Primary and Utility share the same selection grouping
-    [this._primary, this._utility]
-      .forEach(slot => slot.fills
-        .filter(fill => fill !== target)
-        .forEach(fill => fill.props.onExit()));
+      // Remove old selection if we have one
+      if (this.state.selection) {
+        this.state.selection.props.onExit();
+      }
+
+      // Remember selection
+      this.setState({ selection: target });
+    }
   }
 
   render() {
     return (
       <Workspace.AppBar style={style.AppBar}>
-        <Slot name="AppBar.Primary" ref={ref => this._primary = ref} exposedProps={{ onClick: this.handleClick }} style={style.AppBarGroup} />
-        <Slot name="AppBar.Utility" ref={ref => this._utility = ref} exposedProps={{ onClick: this.handleClick }} style={style.AppBarGroup} />
+        <Slot name="AppBar.Primary" exposedProps={{ onClick: this.handleClick }} style={style.AppBarGroup} />
+        <Slot name="AppBar.Utility" exposedProps={{ onClick: this.handleClick }} style={style.AppBarGroup} />
       </Workspace.AppBar>
     )
   }
