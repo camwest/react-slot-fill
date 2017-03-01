@@ -2,6 +2,8 @@ import React from 'react';
 import Workspace from './Workspace';
 import AppBar from './AppBar';
 
+import { Slot, Fill } from '../slots';
+
 import SettingsIcon from 'react-icons/lib/md/settings';
 
 export default class Settings extends React.Component {
@@ -23,7 +25,7 @@ export default class Settings extends React.Component {
   render() {
     return (
       <div>
-        <AppBar.PrimaryItem
+        <AppBar.UtilityItem
           label="Settings"
           order={1}
           icon={<SettingsIcon />}
@@ -31,8 +33,8 @@ export default class Settings extends React.Component {
           onExit={this.handleExit} />
 
         {this.state.active &&
-          <Workspace.Panel>
-            <div>Hello Settings</div>
+          <Workspace.Panel title="Settings">
+            <Slot name="Settings.Group" />
           </Workspace.Panel>
         }
       </div>
@@ -40,3 +42,20 @@ export default class Settings extends React.Component {
   }
 }
 
+Settings.Group = (props) =>
+  <Fill name="Settings.Group">
+    <div>
+      {props.label}
+      {props.children}
+    </div>
+  </Fill>
+
+Settings.Checkbox = (props) => {
+  const {label, ...rest} = props;
+
+  return (
+    <div>
+      <input type="checkbox" {...rest} /> {label}
+    </div>
+  );
+}
