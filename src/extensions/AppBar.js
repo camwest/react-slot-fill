@@ -9,6 +9,11 @@ const style = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between'
+  },
+
+  AppBarGroup: {
+    display: 'flex',
+    flexDirection: 'column'
   }
 }
 
@@ -32,8 +37,8 @@ class AppBar extends React.Component {
   render() {
     return (
       <Workspace.AppBar style={style.AppBar}>
-        <Slot name="AppBar.Primary" ref={ref => this._primary = ref} exposedProps={{ onClick: this.handleClick }} />
-        <Slot name="AppBar.Utility" ref={ref => this._utility = ref} exposedProps={{ onClick: this.handleClick }} />
+        <Slot name="AppBar.Primary" ref={ref => this._primary = ref} exposedProps={{ onClick: this.handleClick }} style={style.AppBarGroup} />
+        <Slot name="AppBar.Utility" ref={ref => this._utility = ref} exposedProps={{ onClick: this.handleClick }} style={style.AppBarGroup} />
       </Workspace.AppBar>
     )
   }
@@ -63,7 +68,7 @@ class BasicIcon extends React.Component {
   }
 
   render() {
-    const { icon, fill, label } = this.props;
+    const { icon, fill, label, order } = this.props;
 
     const iconElement = icon
       ? React.cloneElement(icon, { size: 30, className: 'AppBar-AppBarItemIcon' })
@@ -77,7 +82,7 @@ class BasicIcon extends React.Component {
 
     return (
       <Fill name={fill} onEnter={this.handleEnter} onExit={this.handleExit}>
-        <button className={className}>
+        <button className={className} style={{ order }}>
           {iconElement}
           {label}
         </button>
@@ -88,6 +93,7 @@ class BasicIcon extends React.Component {
 
 BasicIcon.defaultProps = {
   icon: null,
+  order: null,
   onEnter: () => { /* no-op */ },
   onExit: () => { /* no-op */ }
 }

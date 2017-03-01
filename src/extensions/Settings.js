@@ -25,6 +25,7 @@ export default class Settings extends React.Component {
       <div>
         <AppBar.PrimaryItem
           label="Settings"
+          order={1}
           icon={<SettingsIcon />}
           onEnter={this.handleEnter}
           onExit={this.handleExit} />

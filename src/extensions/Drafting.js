@@ -24,6 +24,7 @@ export default class Drafting extends React.Component {
       <div>
         <AppBar.PrimaryItem
           label="Drafting"
+          order={0}
           icon={<CreateIcon />}
           onEnter={this.handleEnter}
           onExit={this.handleExit} />
