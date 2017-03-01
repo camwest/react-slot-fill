@@ -8,10 +8,36 @@ class Manager {
     this.handleFillUpdated = this.handleFillUpdated.bind(this);
     this.handleFillUnmount = this.handleFillUnmount.bind(this);
 
+    /**
+     * // The name of the slot
+     * type Name = string;
+     *
+     * // The callback function a Fill uses to be notified when a Slot changes
+     * type Listener = (components: Component[]) => void
+     *
+     * // The Fill and it's corresponding React Element
+     * interface Component {
+     *  name: Name;
+     *  fill: Fill;
+     *  element: React.Element;
+     * }
+     *
+     * interface FillRegistration {
+     *   listeners: Listener[];
+     *   components: Component[];
+     * }
+     */
+
     this._db = {
-      byName: {},             // stores name -> listeners/children
-      byFill: new Map(),      // stores fill -> component
-      byComponent: new Map()  // stores component -> name
+      /**
+       * {[key: Name]: FillRegistration
+       */
+      byName: {},
+
+      /**
+       * Map<Fill, Component>
+       */
+      byFill: new Map()
     };
 
     bus.addEventListener('fill-mount', this.handleFillMount);
@@ -20,11 +46,14 @@ class Manager {
   }
 
   handleFillMount({ detail: { fill }}) {
-    const component = React.Children.only(fill.props.children);
+    const element = React.Children.only(fill.props.children);
     const name = fill.props.name;
 
     // debugger;
 
+    const component = { fill, element, name };
+
+    // If the name is already registered
     if (this._db.byName[name]) {
       this._db.byName[name].components.push(component);
     } else {
@@ -35,7 +64,6 @@ class Manager {
     }
 
     this._db.byFill.set(fill, component);
-    this._db.byComponent.set(component, name);
 
     // notify listeners
     this._db.byName[name].listeners.forEach(fn =>
@@ -43,20 +71,16 @@ class Manager {
   }
 
   handleFillUpdated({ detail: { fill }}) {
-    const oldComponent = this._db.byFill.get(fill);
-    const newComponent = React.Children.only(fill.props.children);
+    // Find the component
+    const component = this._db.byFill.get(fill);
 
-    // replace previous contribution with the one in this fill
-    const name = this._db.byComponent.get(oldComponent);
-    const components = this._db.byName[name].components;
+    // Get the new element
+    const newElement = React.Children.only(fill.props.children);
 
-    // Remove old references
-    components.splice(components.indexOf(oldComponent), 1, newComponent);
-    this._db.byComponent.delete(oldComponent);
+    // replace previous element with the new one
+    component.element = newElement;
 
-    // Add new references
-    this._db.byFill.set(fill, newComponent);
-    this._db.byComponent.set(newComponent, name);
+    const name = component.name;
 
     // notify listeners
     this._db.byName[name].listeners.forEach(fn => {
@@ -65,21 +89,23 @@ class Manager {
   }
 
   handleFillUnmount({ detail: { fill }}) {
+    console.log(`unmount`);
+    console.log(fill);
+
     const oldComponent = this._db.byFill.get(fill);
 
-    // remove previous contribution
-    const name = this._db.byComponent.get(oldComponent);
+    const name = oldComponent.name;
+
     const components = this._db.byName[name].components;
+
+    // remove previous component
     components.splice(components.indexOf(oldComponent), 1);
 
     // Clean up byFill reference
     this._db.byFill.delete(fill);
 
-    // Clean up oldComponent
-    this._db.byComponent.delete(oldComponent);
-
-    if (this._db.byName[name].listeners.length == 0 &&
-      this._db.byName[name].components.length == 0) {
+    if (this._db.byName[name].listeners.length === 0 &&
+      this._db.byName[name].components.length === 0) {
       delete this._db.byName[name];
     }
 
@@ -129,6 +155,9 @@ export class Slot extends React.Component {
     manager.onComponentsChange(this.props.name, this.handleComponentChange);
   }
 
+  /**
+   * components: Component[]
+   */
   handleComponentChange(components) {
     this.setState({ components });
   }
@@ -149,13 +178,35 @@ export class Slot extends React.Component {
   }
 
   render() {
+    const elements = this.state.components.map((component, index) => {
+      const { fill, element } = component;
+
+      if (this.props.exposedProps) {
+        const exposedProps = Object.keys(this.props.exposedProps).reduce((acc, key) => {
+          const value = this.props.exposedProps[key]
+
+          if (typeof value === 'function') {
+            acc[key] = () => value(fill, this.state.components.map(c => c.fill));
+          } else {
+            acc[key] = value;
+          }
+
+          return acc;
+        }, {});
+
+        return React.cloneElement(element, { key: index.toString(), ...exposedProps });
+      } else {
+        return element;
+      }
+    });
+
     if (typeof this.props.children === 'function') {
-      const results = this.props.children(this.state.components);
+      const results = this.props.children(elements);
       return results || null;
     } else {
       return (
         <div>
-          {this.state.components}
+          {elements}
         </div>
       )
     }
