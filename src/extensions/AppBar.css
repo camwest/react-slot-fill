@@ -1,0 +1,28 @@
+.AppBar-AppBarItem:focus {
+  outline: none;
+}
+
+.AppBar-AppBarItem:focus,
+.AppBar-AppBarItem.AppBar-AppBarItem--active:focus {
+  background-color: #E5E5E5;
+}
+
+.AppBar-AppBarItem:hover .AppBar-AppBarItemIcon {
+  color: #B4B4B4;
+}
+
+.AppBar-AppBarItem.AppBar-AppBarItem--active  {
+  background-color: #D2D2D2;
+}
+
+.AppBar-AppBarItem:active {
+  color: #046A97;
+}
+
+.AppBar-AppBarItem {
+  background: none;
+  border: none;
+  color: #3C3C3C;
+  font-size: 11px;
+  padding: 8px;
+}

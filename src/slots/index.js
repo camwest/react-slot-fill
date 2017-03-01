@@ -46,12 +46,12 @@ class Manager {
   }
 
   handleFillMount({ detail: { fill }}) {
-    const element = React.Children.only(fill.props.children);
+    const elements = React.Children.toArray(fill.props.children);
     const name = fill.props.name;
 
     // debugger;
 
-    const component = { fill, element, name };
+    const component = { fill, elements, name };
 
     // If the name is already registered
     if (this._db.byName[name]) {
@@ -74,11 +74,11 @@ class Manager {
     // Find the component
     const component = this._db.byFill.get(fill);
 
-    // Get the new element
-    const newElement = React.Children.only(fill.props.children);
+    // Get the new elements
+    const newElements = React.Children.toArray(fill.props.children);
 
     // replace previous element with the new one
-    component.element = newElement;
+    component.elements = newElements;
 
     const name = component.name;
 
@@ -89,9 +89,6 @@ class Manager {
   }
 
   handleFillUnmount({ detail: { fill }}) {
-    console.log(`unmount`);
-    console.log(fill);
-
     const oldComponent = this._db.byFill.get(fill);
 
     const name = oldComponent.name;
@@ -162,6 +159,10 @@ export class Slot extends React.Component {
     this.setState({ components });
   }
 
+  get fills() {
+    return this.state.components.map(c => c.fill);
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.name !== this.props.name) {
       manager.removeOnComponentsChange(this.props.name, this.handleComponentChange);
@@ -178,15 +179,22 @@ export class Slot extends React.Component {
   }
 
   render() {
-    const elements = this.state.components.map((component, index) => {
-      const { fill, element } = component;
+    const aggElements = [];
+    const aggStyles = {};
+
+    this.state.components.forEach((component, index) => {
+      const { fill, elements } = component;
+
+      if (fill.props.style) {
+        Object.assign(aggStyles, fill.props.style);
+      }
 
       if (this.props.exposedProps) {
         const exposedProps = Object.keys(this.props.exposedProps).reduce((acc, key) => {
           const value = this.props.exposedProps[key]
 
           if (typeof value === 'function') {
-            acc[key] = () => value(fill, this.state.components.map(c => c.fill));
+            acc[key] = () => value(fill, this.fills);
           } else {
             acc[key] = value;
           }
@@ -194,19 +202,34 @@ export class Slot extends React.Component {
           return acc;
         }, {});
 
-        return React.cloneElement(element, { key: index.toString(), ...exposedProps });
+        elements.forEach(element => {
+          aggElements.push(
+            React.cloneElement(element, { key: index.toString(), ...exposedProps })
+          )
+        });
       } else {
-        return element;
+        elements.forEach(element => {
+          aggElements.push(element);
+        });
       }
     });
 
     if (typeof this.props.children === 'function') {
-      const results = this.props.children(elements);
-      return results || null;
+      const results = this.props.children(aggElements);
+
+      if (results) {
+        return (
+          <div style={Object.assign({}, this.props.style, aggStyles)}>
+            {results}
+          </div>
+        )
+      } else {
+        return null;
+      }
     } else {
       return (
-        <div>
-          {elements}
+        <div style={Object.assign({}, this.props.style, aggStyles)}>
+          {aggElements}
         </div>
       )
     }
@@ -223,7 +246,7 @@ export class Fill extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.name === this.props.name) {
+    if (prevProps.name !== this.props.name || prevProps.style !== this.props.style) {
       bus.dispatchEvent(new CustomEvent('fill-updated', {
         detail: {
           fill: this,

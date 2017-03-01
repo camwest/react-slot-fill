@@ -2,6 +2,8 @@ import React from 'react';
 import Workspace from './Workspace';
 import AppBar from './AppBar';
 
+import CreateIcon from 'react-icons/lib/md/create';
+
 export default class Drafting extends React.Component {
   constructor(props) {
     super(props);
@@ -20,11 +22,15 @@ export default class Drafting extends React.Component {
   render() {
     return (
       <div>
-        <AppBar.PrimaryItem label="Drafting" onEnter={this.handleEnter} onExit={this.handleExit} />
+        <AppBar.PrimaryItem
+          label="Drafting"
+          icon={<CreateIcon />}
+          onEnter={this.handleEnter}
+          onExit={this.handleExit} />
 
         {this.state.active &&
           <Workspace.Panel>
-            Hello Drafting
+            <div>Hello Drafting</div>
           </Workspace.Panel>
         }
       </div>

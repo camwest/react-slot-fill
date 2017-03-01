@@ -2,6 +2,8 @@ import React from 'react';
 import Workspace from './Workspace';
 import AppBar from './AppBar';
 
+import SettingsIcon from 'react-icons/lib/md/settings';
+
 export default class Settings extends React.Component {
   constructor(props) {
     super(props);
@@ -21,11 +23,15 @@ export default class Settings extends React.Component {
   render() {
     return (
       <div>
-        <AppBar.PrimaryItem label="Settings" onEnter={this.handleEnter} onExit={this.handleExit} />
+        <AppBar.PrimaryItem
+          label="Settings"
+          icon={<SettingsIcon />}
+          onEnter={this.handleEnter}
+          onExit={this.handleExit} />
 
         {this.state.active &&
           <Workspace.Panel>
-            Hello Settings
+            <div>Hello Settings</div>
           </Workspace.Panel>
         }
       </div>
