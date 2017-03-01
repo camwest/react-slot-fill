@@ -8,10 +8,6 @@ import Drafting from './extensions/Drafting';
 import Settings from './extensions/Settings';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <StaticLoader>
