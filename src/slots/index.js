@@ -132,7 +132,8 @@ class Manager {
    * name: String, fn: (components: Component[]) => void
    */
   removeOnComponentsChange(name, fn) {
-    console.log('removeOnComponentsChange', name);
+    const listeners = this._db.byName[name].listeners;
+    listeners.splice(listeners.indexOf(fn), 1);
   }
 }
 
