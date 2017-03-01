@@ -34,13 +34,23 @@ const Workspace = (props) =>
 
 Workspace.AppBar = (props) =>
   <Fill name="Workspace.AppBar" style={props.style}>
-    { props.children }
+    {props.children}
   </Fill>
 
-Workspace.Panel = (props) =>
-  <Fill name="Workspace.Panel">
-    { props.children }
-  </Fill>
+Workspace.Panel = (props) => {
+  const title = props.title
+    ? <h3>{props.title}</h3>
+    : null;
+
+  return (
+    <Fill name="Workspace.Panel">
+      <div>
+        {title}
+        {props.children}
+      </div>
+    </Fill>
+  );
+}
 
 export default Workspace;
 
