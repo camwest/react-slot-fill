@@ -47,7 +47,7 @@ export default class Drafting extends React.Component {
           </Workspace.Panel>
         }
 
-        <Settings.Group label="Drafting Options">
+        <Settings.Group label="Drafting">
           <Settings.Checkbox label="Enable Snapping" checked={this.state.snapping} onChange={this.handleEnableSnapping} />
         </Settings.Group>
       </div>
