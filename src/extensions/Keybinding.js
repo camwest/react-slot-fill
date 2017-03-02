@@ -64,7 +64,7 @@ export default class Keybinding extends React.Component {
                 <tbody key={index.toString()}>
                   {group.bindings.map((binding, index2) =>
                     <tr key={index.toString()+index2.toString()}>
-                      {index2 == 0 &&
+                      {index2 === 0 &&
                         <td rowSpan={numItems} className="pv2 ph3">{group.name}</td>
                       }
                       <td className="pv2 ph3">{binding.hotkey}</td>
@@ -101,13 +101,13 @@ class Keybind extends React.Component {
   }
 
   componentWillUnmount() {
+    Mousetrap.unbind(this.props.hotkey, this.handleInvoke);
     this.props.onUnRegistered();
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.hotkey !== this.props.hotkey) {
-      console.log('do something like re-register');
-    }
+    Mousetrap.unbind(this.props.hotkey, this.handleInvoke);
+    Mousetrap.bind(this.props.hotkey, this.handleInvoke);
   }
 
   render() {
