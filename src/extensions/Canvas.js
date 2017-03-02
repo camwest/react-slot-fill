@@ -22,7 +22,6 @@ export default class Canvas extends React.Component {
         onInvoke={this.handleInvoke}>
         <Workspace.Canvas>
           Canvas!
-          <input type="text" ref={r => this.input = r} />
         </Workspace.Canvas>
       </Keybinding.Binding>
     );
