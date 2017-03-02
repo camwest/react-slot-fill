@@ -6,22 +6,27 @@ import Keybinding from './Keybinding';
 export default class Canvas extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { focused: false };
     this.handleInvoke = this.handleInvoke.bind(this);
   }
 
   handleInvoke() {
-    debugger;
+    this.setState({ focused: true });
   }
 
   render() {
+    const message = this.state.focused
+      ? 'Canvas Focused'
+      : 'Canvas Unfocused';
+
     return (
       <Keybinding.Binding
-        hotkey="cmd+shift+c"
+        hotkey="g c"
         groupName="Canvas"
         description="Focus the Canvas"
         onInvoke={this.handleInvoke}>
         <Workspace.Canvas>
-          Canvas!
+          {message}
         </Workspace.Canvas>
       </Keybinding.Binding>
     );
