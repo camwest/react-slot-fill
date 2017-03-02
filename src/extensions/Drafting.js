@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Workspace from './Workspace';
 import AppBar from './AppBar';
 import Settings from './Settings';
@@ -34,6 +35,7 @@ export default class Drafting extends React.Component {
       <div>
         <AppBar.PrimaryItem
           label="Drafting"
+          hotkey="command+shift+d"
           order={0}
           icon={<CreateIcon />}
           onEnter={this.handleEnter}

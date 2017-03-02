@@ -200,14 +200,16 @@ export class Slot extends React.Component {
           return acc;
         }, {});
 
-        elements.forEach(element => {
+        elements.forEach((element, index2) => {
           aggElements.push(
-            React.cloneElement(element, { key: index.toString(), ...exposedProps })
+            React.cloneElement(element, { key: index.toString() + index2.toString(), ...exposedProps })
           )
         });
       } else {
-        elements.forEach(element => {
-          aggElements.push(element);
+        elements.forEach((element, index2) => {
+          aggElements.push(
+            React.cloneElement(element, { key: index.toString() + index2.toString() })
+          );
         });
       }
     });

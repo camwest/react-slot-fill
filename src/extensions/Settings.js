@@ -27,6 +27,7 @@ export default class Settings extends React.Component {
       <div>
         <AppBar.UtilityItem
           label="Settings"
+          hotkey="command+,"
           order={1}
           icon={<SettingsIcon />}
           onEnter={this.handleEnter}
@@ -42,16 +43,30 @@ export default class Settings extends React.Component {
   }
 }
 
-Settings.Group = (props) =>
-  <Fill name="Settings.Group">
+
+Settings.Group = class extends React.Component {
+  render() {
+    return (
+      <Fill name="Settings.Group">
+        <h4>{this.props.label}</h4>
+        {this.props.children}
+      </Fill>
+    );
+  }
+}
+
+Settings.TextInput = (props) => {
+  const { label, ...rest } = props;
+
+  return (
     <div>
-      {props.label}
-      {props.children}
+      <input type="text" {...rest} /> {label}
     </div>
-  </Fill>
+  )
+}
 
 Settings.Checkbox = (props) => {
-  const {label, ...rest} = props;
+  const { label, ...rest } = props;
 
   return (
     <div>

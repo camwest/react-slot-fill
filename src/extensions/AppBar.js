@@ -1,6 +1,7 @@
 import React from 'react';
 import { Slot, Fill } from '../slots';
 import Workspace from './Workspace';
+import Keybinding from './Keybinding';
 
 import './AppBar.css';
 
@@ -21,10 +22,10 @@ class AppBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = { selection: null };
-    this.handleClick = this.handleClick.bind(this);
+    this.handleActivate = this.handleActivate.bind(this);
   }
 
-  handleClick(target) {
+  handleActivate(target) {
     if (this.state.selection === target) {
       target.props.onExit();
       this.setState({ selection: null });
@@ -43,10 +44,12 @@ class AppBar extends React.Component {
 
   render() {
     return (
-      <Workspace.AppBar style={style.AppBar}>
-        <Slot name="AppBar.Primary" exposedProps={{ onClick: this.handleClick }} style={style.AppBarGroup} />
-        <Slot name="AppBar.Utility" exposedProps={{ onClick: this.handleClick }} style={style.AppBarGroup} />
-      </Workspace.AppBar>
+      <div>
+        <Workspace.AppBar style={style.AppBar}>
+          <Slot name="AppBar.Primary" exposedProps={{ onActivate: this.handleActivate }} style={style.AppBarGroup} />
+          <Slot name="AppBar.Utility" exposedProps={{ onActivate: this.handleActivate }} style={style.AppBarGroup} />
+        </Workspace.AppBar>
+      </div>
     )
   }
 }
@@ -55,6 +58,37 @@ export default AppBar;
 
 AppBar.PrimaryItem = (props) => <BasicIcon fill="AppBar.Primary" {...props} />
 AppBar.UtilityItem = (props) => <BasicIcon fill="AppBar.Utility" {...props} />
+
+class HotkeyButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleActivate = this.handleActivate.bind(this);
+  }
+
+  handleActivate() {
+    this.props.onActivate();
+  }
+
+  render() {
+    const { children, hotkey, onActivate, label, ...rest } = this.props;
+
+    return (
+      <Keybinding.Binding
+          hotkey={hotkey}
+          groupName="App Bar"
+          description={`Activate ${label}`}
+          onInvoke={this.handleActivate}>
+        <button {...rest} onClick={this.handleActivate}>
+          {children}
+        </button>
+      </Keybinding.Binding>
+    );
+  }
+}
+
+HotkeyButton.defaultProps = {
+  onActivate: () => { /* no-op */ }
+}
 
 class BasicIcon extends React.Component {
   constructor(props) {
@@ -75,7 +109,7 @@ class BasicIcon extends React.Component {
   }
 
   render() {
-    const { icon, fill, label, order } = this.props;
+    const { icon, fill, label, order, hotkey } = this.props;
 
     const iconElement = icon
       ? React.cloneElement(icon, { size: 30, className: 'AppBar-AppBarItemIcon' })
@@ -89,10 +123,10 @@ class BasicIcon extends React.Component {
 
     return (
       <Fill name={fill} onEnter={this.handleEnter} onExit={this.handleExit}>
-        <button className={className} style={{ order }}>
+        <HotkeyButton hotkey={hotkey} label={label} className={className} style={{ order }}>
           {iconElement}
           {label}
-        </button>
+        </HotkeyButton>
       </Fill>
     )
   }
