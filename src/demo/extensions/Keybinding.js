@@ -1,6 +1,6 @@
 import React from 'react';
 import Mousetrap from 'mousetrap';
-import { Slot, Fill } from '../slots';
+import { Slot, Fill } from '../../lib';
 import Settings from './Settings';
 
 export default class Keybinding extends React.Component {

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import 'tachyons/css/tachyons.min.css';
 
-import StaticLoader from './extensions/StaticLoader';
 import Workspace from './extensions/Workspace';
 import AppBar from './extensions/AppBar';
 import Drafting from './extensions/Drafting';
@@ -13,14 +12,14 @@ import Canvas from './extensions/Canvas';
 class App extends Component {
   render() {
     return (
-      <StaticLoader>
+      <div style={{ width: '100%', height: '100%' }}>
         <Workspace />
         <AppBar />
         <Settings />
         <Drafting />
         <Keybinding />
         <Canvas />
-      </StaticLoader>
+      </div>
     );
   }
 }

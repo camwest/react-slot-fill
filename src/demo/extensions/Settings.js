@@ -1,10 +1,9 @@
 import React from 'react';
-import Workspace from './Workspace';
-import AppBar from './AppBar';
-
-import { Slot, Fill } from '../slots';
-
 import SettingsIcon from 'react-icons/lib/md/settings';
+
+import { Slot, Fill } from '../../lib';
+import AppBar from './AppBar';
+import Workspace from './Workspace';
 
 export default class Settings extends React.Component {
   constructor(props) {

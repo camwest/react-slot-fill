@@ -1,5 +1,5 @@
 import React from 'react';
-import { Slot, Fill } from '../slots';
+import { Slot, Fill } from '../../lib';
 import Workspace from './Workspace';
 import Keybinding from './Keybinding';
 
@@ -70,6 +70,7 @@ class HotkeyButton extends React.Component {
   }
 
   render() {
+    // eslint-disable-next-line
     const { children, hotkey, onActivate, label, ...rest } = this.props;
 
     return (

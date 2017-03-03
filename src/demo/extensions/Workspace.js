@@ -1,5 +1,5 @@
 import React from 'react';
-import { Slot, Fill } from '../slots'
+import { Slot, Fill } from '../../lib'
 import SplitPane from 'react-split-pane';
 
 import './Workspace.css';
