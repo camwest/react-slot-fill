@@ -11,7 +11,7 @@ Check out the [demos](http://react-slot-fill.surge.sh/)
 ### Toolbar.js
 
 ```html
-import {Slot} from 'react-slot-fill';
+import { Slot, Fill } from 'react-slot-fill';
 
 const Toolbar = (props) =>
   <div>

@@ -5,11 +5,10 @@ import './Workspace.css';
 
 const style = {
   container: {
-    width: '100%',
-    height: '100%',
     background: '#FFFFFF',
     opacity: 0.85,
-    display: 'flex'
+    display: 'flex',
+    flexGrow: 1
   },
 
   AppBar: {
@@ -22,7 +21,6 @@ const style = {
     background: '#FFFFFF',
     borderRight: 'solid 1px #C2C2C2',
     padding: '28px',
-    height: '100%',
     overflow: 'hidden'
   }
 }
