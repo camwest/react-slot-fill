@@ -1,4 +1,5 @@
-import React from 'react';
+const React = window.React;
+
 import SettingsIcon from 'react-icons/lib/md/settings';
 
 import { Slot, Fill } from '../../lib';
@@ -22,23 +23,22 @@ export default class Settings extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <AppBar.UtilityItem
-          label="Settings"
-          hotkey="command+,"
-          order={1}
-          icon={<SettingsIcon />}
-          onEnter={this.handleEnter}
-          onExit={this.handleExit} />
+    const Panel = this.state.active
+      ? <Workspace.Panel title="Settings">
+          <Slot name="Settings.Group" />
+        </Workspace.Panel>
+      : null;
 
-        {this.state.active &&
-          <Workspace.Panel title="Settings">
-            <Slot name="Settings.Group" />
-          </Workspace.Panel>
-        }
-      </div>
-    );
+    return [
+      <AppBar.UtilityItem
+        label="Settings"
+        hotkey="command+,"
+        order={1}
+        icon={<SettingsIcon />}
+        onEnter={this.handleEnter}
+        onExit={this.handleExit} />,
+      Panel
+    ];
   }
 }
 

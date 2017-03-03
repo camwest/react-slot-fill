@@ -1,4 +1,5 @@
-import React from 'react';
+const React = window.React;
+
 import { Slot, Fill } from '../../lib';
 import Workspace from './Workspace';
 import Keybinding from './Keybinding';
@@ -9,7 +10,8 @@ const style = {
   AppBar: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    height: '100%'
   },
 
   AppBarGroup: {
@@ -44,12 +46,14 @@ class AppBar extends React.Component {
 
   render() {
     return (
-      <div>
-        <Workspace.AppBar style={style.AppBar}>
-          <Slot name="AppBar.Primary" exposedProps={{ onActivate: this.handleActivate }} style={style.AppBarGroup} />
-          <Slot name="AppBar.Utility" exposedProps={{ onActivate: this.handleActivate }} style={style.AppBarGroup} />
-        </Workspace.AppBar>
-      </div>
+      <Workspace.AppBar style={style.AppBar}>
+        <div style={style.AppBarGroup}>
+          <Slot name="AppBar.Primary" exposedProps={{ onActivate: this.handleActivate }} />
+        </div>
+        <div style={style.AppBarGroup}>
+          <Slot name="AppBar.Utility" exposedProps={{ onActivate: this.handleActivate }}  />
+        </div>
+      </Workspace.AppBar>
     )
   }
 }
@@ -73,17 +77,16 @@ class HotkeyButton extends React.Component {
     // eslint-disable-next-line
     const { children, hotkey, onActivate, label, ...rest } = this.props;
 
-    return (
+    return [
       <Keybinding.Binding
-          hotkey={hotkey}
-          groupName="App Bar"
-          description={`Activate ${label}`}
-          onInvoke={this.handleActivate}>
-        <button {...rest} onClick={this.handleActivate}>
-          {children}
-        </button>
-      </Keybinding.Binding>
-    );
+        hotkey={hotkey}
+        groupName="App Bar"
+        description={`Activate ${label}`}
+        onInvoke={this.handleActivate} />,
+      <button {...rest} onClick={this.handleActivate}>
+        {children}
+      </button>
+    ];
   }
 }
 

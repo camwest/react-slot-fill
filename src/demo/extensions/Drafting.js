@@ -1,9 +1,8 @@
-import React from 'react';
+const React = window.React;
 
 import Workspace from './Workspace';
 import AppBar from './AppBar';
 import Settings from './Settings';
-
 import CreateIcon from 'react-icons/lib/md/create';
 
 export default class Drafting extends React.Component {
@@ -31,27 +30,25 @@ export default class Drafting extends React.Component {
       ? <div>Snapping is enabled!</div>
       : <div>Snapping is NOT enabled!</div>;
 
-    return (
-      <div>
-        <AppBar.PrimaryItem
-          label="Drafting"
-          hotkey="command+shift+d"
-          order={0}
-          icon={<CreateIcon />}
-          onEnter={this.handleEnter}
-          onExit={this.handleExit} />
+    const Panel = this.state.active
+      ? <Workspace.Panel title="Drafting">
+        {snappingNotice}
+      </Workspace.Panel>
+      : null;
 
-        {this.state.active &&
-          <Workspace.Panel title="Drafting">
-            {snappingNotice}
-          </Workspace.Panel>
-        }
-
-        <Settings.Group label="Drafting">
-          <Settings.Checkbox label="Enable Snapping" checked={this.state.snapping} onChange={this.handleEnableSnapping} />
-        </Settings.Group>
-      </div>
-    );
+    return [
+      <AppBar.PrimaryItem
+        label="Drafting"
+        hotkey="command+shift+d"
+        order={0}
+        icon={<CreateIcon />}
+        onEnter={this.handleEnter}
+        onExit={this.handleExit} />,
+      Panel,
+      <Settings.Group label="Drafting">
+        <Settings.Checkbox label="Enable Snapping" checked={this.state.snapping} onChange={this.handleEnableSnapping} />
+      </Settings.Group>
+    ];
   }
 }
 

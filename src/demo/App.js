@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+const React = window.React;
+
 import './App.css';
 import 'tachyons/css/tachyons.min.css';
 
@@ -9,7 +10,7 @@ import Settings from './extensions/Settings';
 import Keybinding from './extensions/Keybinding';
 import Canvas from './extensions/Canvas';
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <div style={{ width: '100%', height: '100%' }}>

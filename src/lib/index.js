@@ -1,4 +1,4 @@
-import React from 'react';
+const React = window.React;
 
 const bus = document.createElement('div');
 
@@ -178,14 +178,9 @@ export class Slot extends React.Component {
 
   render() {
     const aggElements = [];
-    const aggStyles = {};
 
     this.state.components.forEach((component, index) => {
       const { fill, elements } = component;
-
-      if (fill.props.style) {
-        Object.assign(aggStyles, fill.props.style);
-      }
 
       if (this.props.exposedProps) {
         const exposedProps = Object.keys(this.props.exposedProps).reduce((acc, key) => {
@@ -218,20 +213,12 @@ export class Slot extends React.Component {
       const results = this.props.children(aggElements);
 
       if (results) {
-        return (
-          <div style={Object.assign({}, this.props.style, aggStyles)}>
-            {results}
-          </div>
-        )
+        return results;
       } else {
         return null;
       }
     } else {
-      return (
-        <div style={Object.assign({}, this.props.style, aggStyles)}>
-          {aggElements}
-        </div>
-      )
+      return aggElements;
     }
   }
 }
@@ -246,7 +233,7 @@ export class Fill extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.name !== this.props.name || prevProps.style !== this.props.style) {
+    if (prevProps.name !== this.props.name) {
       bus.dispatchEvent(new CustomEvent('fill-updated', {
         detail: {
           fill: this,

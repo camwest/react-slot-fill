@@ -1,4 +1,5 @@
-import React from 'react';
+const React = window.React;
+
 import { Slot, Fill } from '../../lib'
 import SplitPane from 'react-split-pane';
 
@@ -62,22 +63,26 @@ class Workspace extends React.Component {
     if (this.state.showPanel) {
       content = (
         <div style={style.SplitPaneContainer}>
-          <SplitPane split="vertical" size={this.state.size} defaultSize={300} minSize={300} maxSize={-300} onChange={ this.handleSplitChange }>
-            <Slot name="Workspace.Panel" style={style.Panel}
-              exposedProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}>
-              {items => items[items.length - 1]}
-            </Slot>
+          {/*<SplitPane split="vertical" size={this.state.size} defaultSize={300} minSize={300} maxSize={-300} onChange={ this.handleSplitChange }>*/}
+            <div style={style.Panel}>
+              <Slot name="Workspace.Panel"
+                exposedProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}>
+                {items => items[items.length - 1]}
+              </Slot>
+            </div>
             {canvas}
-          </SplitPane>
+          {/*</SplitPane>*/}
         </div>
       )
     } else {
       content = (
         <div style={style.SplitPaneContainer}>
-          <Slot name="Workspace.Panel" style={style.Panel}
-            exposedProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}>
-            {items => items[items.length - 1]}
-          </Slot>
+          <div style={style.Panel}>
+            <Slot name="Workspace.Panel" style={style.Panel}
+              exposedProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}>
+              {items => items[items.length - 1]}
+            </Slot>
+          </div>
           {canvas}
         </div>
       );
@@ -85,7 +90,9 @@ class Workspace extends React.Component {
 
     return (
       <div style={style.container}>
-        <Slot name="Workspace.AppBar" style={style.AppBar} />
+        <div style={style.AppBar}>
+          <Slot name="Workspace.AppBar" />
+        </div>
         {content}
       </div>
     );
@@ -93,8 +100,8 @@ class Workspace extends React.Component {
 }
 
 Workspace.AppBar = (props) =>
-  <Fill name="Workspace.AppBar" style={props.style}>
-    {props.children}
+  <Fill name="Workspace.AppBar">
+    <div style={props.style}>{props.children}</div>
   </Fill>
 
 class Panel extends React.Component {
@@ -111,12 +118,10 @@ class Panel extends React.Component {
       ? <h3>{this.props.title}</h3>
       : null;
 
-    return (
-      <div>
-        {title}
-        {this.props.children}
-      </div>
-    )
+    return [
+      title,
+      this.props.children
+    ];
   }
 }
 

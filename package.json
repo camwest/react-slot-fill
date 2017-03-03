@@ -1,20 +1,22 @@
 {
-  "name": "web-arx-portal",
+  "name": "react-slot-fill",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "mousetrap": "^1.6.0",
-    "react": "15.4.2",
-    "react-dom": "15.4.2",
+  "devDependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-scripts": "0.9.2",
     "react-icons": "^2.2.3",
     "react-split-pane": "^0.1.58",
     "tachyons": "^4.6.2",
-    "uuid": "^3.0.1"
+    "mousetrap": "^1.6.0"
   },
-  "devDependencies": {
-    "react-scripts": "0.9.2",
-    "uuid": "^3.0.1"
+
+  "peerDependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   },
+
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

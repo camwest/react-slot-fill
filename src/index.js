@@ -1,8 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+const React = window.React;
+const ReactDOMFiber = window.ReactDOMFiber;
+
 import App from './demo/App';
 
-ReactDOM.render(
+ReactDOMFiber.render(
   <App />,
   document.getElementById('root')
 );
