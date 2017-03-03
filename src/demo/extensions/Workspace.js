@@ -1,8 +1,6 @@
 const React = window.React;
 
 import { Slot, Fill } from '../../lib'
-import SplitPane from 'react-split-pane';
-
 import './Workspace.css';
 
 const style = {
@@ -18,11 +16,6 @@ const style = {
     width: '61px',
     background: '#F9F9F9',
     borderRight: 'solid 1px #C2C2C2'
-  },
-
-  SplitPaneContainer: {
-    position: 'relative',
-    width: '100%'
   },
 
   Panel: {
@@ -62,29 +55,19 @@ class Workspace extends React.Component {
 
     if (this.state.showPanel) {
       content = (
-        <div style={style.SplitPaneContainer}>
-          {/*<SplitPane split="vertical" size={this.state.size} defaultSize={300} minSize={300} maxSize={-300} onChange={ this.handleSplitChange }>*/}
-            <div style={style.Panel}>
-              <Slot name="Workspace.Panel"
-                exposedProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}>
-                {items => items[items.length - 1]}
-              </Slot>
-            </div>
-            {canvas}
-          {/*</SplitPane>*/}
+        <div style={style.Panel}>
+          <Slot name="Workspace.Panel"
+            exposedProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}>
+            {items => items[items.length - 1]}
+          </Slot>
         </div>
       )
     } else {
       content = (
-        <div style={style.SplitPaneContainer}>
-          <div style={style.Panel}>
-            <Slot name="Workspace.Panel" style={style.Panel}
-              exposedProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}>
-              {items => items[items.length - 1]}
-            </Slot>
-          </div>
-          {canvas}
-        </div>
+        <Slot name="Workspace.Panel" style={style.Panel}
+          exposedProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}>
+          {items => items[items.length - 1]}
+        </Slot>
       );
     }
 
@@ -94,6 +77,7 @@ class Workspace extends React.Component {
           <Slot name="Workspace.AppBar" />
         </div>
         {content}
+        {canvas}
       </div>
     );
   }

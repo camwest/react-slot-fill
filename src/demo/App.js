@@ -12,16 +12,14 @@ import Canvas from './extensions/Canvas';
 
 class App extends React.Component {
   render() {
-    return (
-      <div style={{ width: '100%', height: '100%' }}>
-        <Workspace />
-        <AppBar />
-        <Settings />
-        <Drafting />
-        <Keybinding />
-        <Canvas />
-      </div>
-    );
+    return [
+      <Workspace />,
+      <AppBar />,
+      <Settings />,
+      <Drafting />,
+      <Keybinding />,
+      <Canvas />
+    ];
   }
 }
 
