@@ -45,7 +45,7 @@ class Manager {
     bus.addEventListener('fill-unmount', this.handleFillUnmount);
   }
 
-  handleFillMount({ detail: { fill }}) {
+  handleFillMount({ detail: { fill } }) {
     const elements = React.Children.toArray(fill.props.children);
     const name = fill.props.name;
     const component = { fill, elements, name };
@@ -67,7 +67,7 @@ class Manager {
       fn(this._db.byName[name].components));
   }
 
-  handleFillUpdated({ detail: { fill }}) {
+  handleFillUpdated({ detail: { fill } }) {
     // Find the component
     const component = this._db.byFill.get(fill);
 
@@ -85,7 +85,7 @@ class Manager {
     });
   }
 
-  handleFillUnmount({ detail: { fill }}) {
+  handleFillUnmount({ detail: { fill } }) {
     const oldComponent = this._db.byFill.get(fill);
 
     const name = oldComponent.name;
@@ -235,16 +235,11 @@ export class Fill extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // if (prevProps.name !== this.props.name) {
-      bus.dispatchEvent(new CustomEvent('fill-updated', {
-        detail: {
-          fill: this,
-        }
-      }))
-    // } else {
-      // this.componentWillUnmount();
-      // this.componentWillMount();
-    // }
+    bus.dispatchEvent(new CustomEvent('fill-updated', {
+      detail: {
+        fill: this,
+      }
+    }));
   }
 
   componentWillUnmount() {
