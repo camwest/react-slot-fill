@@ -2,6 +2,8 @@ import React from 'react';
 import { Slot, Fill } from '../../lib'
 import './Workspace.css';
 
+import SplitPane from 'react-split-pane';
+
 const style = {
   container: {
     background: '#FFFFFF',
@@ -18,9 +20,14 @@ const style = {
 
   Panel: {
     background: '#FFFFFF',
-    borderRight: 'solid 1px #C2C2C2',
     padding: '28px',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    height: '100%'
+  },
+
+  SplitPaneContainer: {
+    position: 'relative',
+    flexGrow: 1
   }
 }
 
@@ -52,19 +59,27 @@ class Workspace extends React.Component {
 
     if (this.state.showPanel) {
       content = (
-        <div style={style.Panel}>
-          <Slot name="Workspace.Panel"
-            exposedProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}>
-            {items => items[items.length - 1]}
-          </Slot>
+        <div style={style.SplitPaneContainer}>
+          <SplitPane split="vertical" minSize={300} defaultSize={300}>
+            <div style={style.Panel}>
+              <Slot name="Workspace.Panel"
+                exposedProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}>
+                {items => items[items.length - 1]}
+              </Slot>
+            </div>
+            {canvas}
+          </SplitPane>
         </div>
       )
     } else {
       content = (
-        <Slot name="Workspace.Panel" style={style.Panel}
-          exposedProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}>
-          {items => items[items.length - 1]}
-        </Slot>
+        <div>
+          <Slot name="Workspace.Panel" style={style.Panel}
+            exposedProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}>
+            {items => items[items.length - 1]}
+          </Slot>
+          {canvas}
+        </div>
       );
     }
 
@@ -74,7 +89,6 @@ class Workspace extends React.Component {
           <Slot name="Workspace.AppBar" />
         </div>
         {content}
-        {canvas}
       </div>
     );
   }
