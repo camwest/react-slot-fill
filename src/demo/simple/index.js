@@ -1,14 +1,14 @@
 import React from 'react';
 import Toolbar from './Toolbar';
 import Viewer from './Viewer';
-import Feature1 from './Feature1';
-import Feature2 from './Feature2';
+import News from './News';
+import Survey from './Survey';
 
 export const Simple = () => [
   <Toolbar />,
   <Viewer />,
-  <Feature1 />,
-  <Feature2 />
+  <News />,
+  <Survey />
 ];
 
 export default Simple;
