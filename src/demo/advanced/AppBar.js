@@ -19,6 +19,9 @@ const style = {
   }
 }
 
+const AppBarPrimary = Symbol();
+const AppBarUtility = Symbol();
+
 class AppBar extends React.Component {
   constructor(props) {
     super(props);
@@ -47,10 +50,10 @@ class AppBar extends React.Component {
     return (
       <Workspace.AppBar style={style.AppBar}>
         <div style={style.AppBarGroup}>
-          <Slot name="AppBar.Primary" exposedProps={{ onActivate: this.handleActivate }} />
+          <Slot name={AppBarPrimary} exposedProps={{ onActivate: this.handleActivate }} />
         </div>
         <div style={style.AppBarGroup}>
-          <Slot name="AppBar.Utility" exposedProps={{ onActivate: this.handleActivate }}  />
+          <Slot name={AppBarUtility} exposedProps={{ onActivate: this.handleActivate }}  />
         </div>
       </Workspace.AppBar>
     )
@@ -59,8 +62,8 @@ class AppBar extends React.Component {
 
 export default AppBar;
 
-AppBar.PrimaryItem = (props) => <BasicIcon fill="AppBar.Primary" {...props} />
-AppBar.UtilityItem = (props) => <BasicIcon fill="AppBar.Utility" {...props} />
+AppBar.PrimaryItem = (props) => <BasicIcon fill={AppBarPrimary} {...props} />
+AppBar.UtilityItem = (props) => <BasicIcon fill={AppBarUtility} {...props} />
 
 class HotkeyButton extends React.Component {
   constructor(props) {
