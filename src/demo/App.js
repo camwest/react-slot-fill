@@ -1,5 +1,4 @@
-const React = window.React;
-
+import React from 'react';
 import Advanced from './advanced';
 import Simple from './simple';
 

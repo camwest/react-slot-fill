@@ -1,5 +1,4 @@
-const React = window.React;
-
+import React from 'react';
 import Toolbar from './Toolbar';
 import Viewer from './Viewer';
 import Feature1 from './Feature1';

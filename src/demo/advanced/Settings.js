@@ -1,5 +1,4 @@
-const React = window.React;
-
+import React from 'react';
 import SettingsIcon from 'react-icons/lib/md/settings';
 
 import { Slot, Fill } from '../../lib';

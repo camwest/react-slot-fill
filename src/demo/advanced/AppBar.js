@@ -1,5 +1,4 @@
-const React = window.React;
-
+import React from 'react';
 import { Slot, Fill } from '../../lib';
 import Workspace from './Workspace';
 import Keybinding from './Keybinding';

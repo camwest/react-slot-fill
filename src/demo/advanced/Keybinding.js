@@ -1,5 +1,4 @@
-const React = window.React;
-
+import React from 'react';
 import Mousetrap from 'mousetrap';
 import { Slot, Fill } from '../../lib';
 import Settings from './Settings';

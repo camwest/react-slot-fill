@@ -1,5 +1,4 @@
-const React = window.React;
-
+import React from 'react';
 import Workspace from './Workspace';
 import Keybinding from './Keybinding';
 
@@ -24,7 +23,7 @@ export default class Canvas extends React.Component {
         {message}
       </Workspace.Canvas>,
       <Keybinding.Binding
-        hotkey="g c"
+        hotkey="g p"
         groupName="Canvas"
         description="Focus the Canvas"
         onInvoke={this.handleInvoke} />

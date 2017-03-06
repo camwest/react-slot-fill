@@ -1,4 +1,4 @@
-const React = window.React;
+import React from 'react';
 
 import { Slot, Fill } from '../../lib';
 
@@ -27,7 +27,7 @@ class Toolbar extends React.Component {
 
 export default Toolbar;
 
-  Toolbar.Item = (props) =>
-    <Fill name="Toolbar.Item" label={props.label} onClick={props.onClick}>
-      <button>{props.label}</button>
+  Toolbar.Item = ({ label, onClick }) =>
+    <Fill name="Toolbar.Item" label={label} onClick={onClick}>
+      <button>{label}</button>
     </Fill>

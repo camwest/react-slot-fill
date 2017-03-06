@@ -1,5 +1,4 @@
-const React = window.React;
-
+import React from 'react';
 import Workspace from './Workspace';
 import AppBar from './AppBar';
 import Settings from './Settings';

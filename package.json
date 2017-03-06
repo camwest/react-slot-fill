@@ -3,18 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
     "react-scripts": "0.9.2",
     "react-icons": "^2.2.3",
     "react-split-pane": "^0.1.58",
     "tachyons": "^4.6.2",
     "mousetrap": "^1.6.0"
-  },
-
-  "peerDependencies": {
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2"
   },
 
   "scripts": {
