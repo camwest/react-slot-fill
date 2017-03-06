@@ -11,19 +11,19 @@ export default class Keybinding extends React.Component {
     this.state = {};
   }
 
-  handleRegistered(fill) {
+  handleRegistered({ props }) {
     this.setState({
-      [fill.props.hotkey]: {
-        hotkey: fill.props.hotkey,
-        groupName: fill.props.groupName,
-        description: fill.props.description
+      [props.hotkey]: {
+        hotkey: props.hotkey,
+        groupName: props.groupName,
+        description: props.description
       }
     });
   }
 
-  handleUnregistered(fill) {
+  handleUnregistered({ props }) {
     this.setState({
-      [fill.props.hotkey]: null
+      [props.hotkey]: null
     });
   }
 

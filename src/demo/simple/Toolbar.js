@@ -9,16 +9,22 @@ class Toolbar extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(fill) {
-    this.setState({ currentItem: fill.props.label });
-    fill.props.onClick();
+  handleClick({ props }) {
+    if (this.state.currentItem) {
+      this.state.currentItem.onDeactive();
+    }
+
+    props.onActive();
+    this.setState({ currentItem: props });
   }
 
   render() {
     return (
       <div>
         <h2>Toolbar</h2>
-        <h3>Current Item: {this.state.currentItem}</h3>
+        {this.state.currentItem &&
+          <h3>Current Item: {this.state.currentItem.label}</h3>}
+
         <Slot name="Toolbar.Item" exposedProps={{ onClick: this.handleClick }} />
       </div>
     );
@@ -27,7 +33,7 @@ class Toolbar extends React.Component {
 
 export default Toolbar;
 
-  Toolbar.Item = ({ label, onClick }) =>
-    <Fill name="Toolbar.Item" label={label} onClick={onClick}>
+  Toolbar.Item = ({ label, onActive, onDeactive }) =>
+    <Fill name="Toolbar.Item" label={label} onActive={onActive} onDeactive={onDeactive}>
       <button>{label}</button>
     </Fill>

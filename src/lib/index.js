@@ -154,6 +154,7 @@ export class Slot extends React.Component {
    * components: Component[]
    */
   handleComponentChange(components) {
+    // debugger;
     this.setState({ components });
   }
 
@@ -218,6 +219,7 @@ export class Slot extends React.Component {
         return null;
       }
     } else {
+      // debugger;
       return aggElements;
     }
   }
@@ -233,16 +235,16 @@ export class Fill extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.name !== this.props.name) {
+    // if (prevProps.name !== this.props.name) {
       bus.dispatchEvent(new CustomEvent('fill-updated', {
         detail: {
           fill: this,
         }
       }))
-    } else {
-      this.componentWillUnmount();
-      this.componentWillMount();
-    }
+    // } else {
+      // this.componentWillUnmount();
+      // this.componentWillMount();
+    // }
   }
 
   componentWillUnmount() {

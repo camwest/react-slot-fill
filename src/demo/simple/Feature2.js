@@ -6,12 +6,18 @@ export default class Feature extends React.Component {
   constructor(props) {
     super(props);
     this.state = { active: false };
-    this.handleClick = this.handleClick.bind(this);
+    this.handleActive = this.handleActive.bind(this);
+    this.handleDeactive = this.handleDeactive.bind(this);
   }
 
-  handleClick() {
+  handleActive() {
     this.setState({ active: true });
   }
+
+  handleDeactive() {
+    this.setState({ active: false });
+  }
+
 
   render() {
     const Content = this.state.active
@@ -19,7 +25,9 @@ export default class Feature extends React.Component {
       : null;
 
     return [
-      <Toolbar.Item label="Feature 2" onClick={this.handleClick} />,
+      <Toolbar.Item label="Feature 2"
+        onActive={this.handleActive}
+        onDeactive={this.handleDeactive} />,
       Content
     ];
   }

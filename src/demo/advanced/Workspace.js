@@ -40,11 +40,11 @@ class Workspace extends React.Component {
     this.handleSplitChange = this.handleSplitChange.bind(this);
   }
 
-  handleOnMount(fill) {
+  handleOnMount() {
     this.setState({ showPanel: true });
   }
 
-  handleOnUnmount(fill) {
+  handleOnUnmount() {
     this.setState({ showPanel: false });
   }
 
