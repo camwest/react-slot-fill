@@ -1,0 +1,18 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "ie": 9,
+        "uglify": true
+      },
+      "modules": false,
+      "useBuiltIns": false
+    }],
+    "react"
+  ],
+  "plugins": [
+    "external-helpers",
+    ["transform-object-rest-spread", {"useBuiltIns": true}],
+    ["transform-react-jsx", {"useBuiltIns": true}]
+  ]
+}
