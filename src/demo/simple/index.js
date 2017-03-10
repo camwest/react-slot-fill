@@ -8,7 +8,7 @@ export const Simple = () => [
   <Toolbar />,
   <Viewer />,
   <News />,
-  <Survey />
+  // <Survey />
 ];
 
 export default Simple;

@@ -60,7 +60,7 @@ class Workspace extends React.Component {
     if (this.state.showPanel) {
       content = (
         <div style={style.SplitPaneContainer}>
-          <SplitPane split="vertical" minSize={300} defaultSize={300}>
+          <SplitPane split="vertical" minSize={300} defaultSize={425}>
             <div style={style.Panel}>
               <Slot name="Workspace.Panel"
                 exposedProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}>
@@ -73,7 +73,7 @@ class Workspace extends React.Component {
       )
     } else {
       content = (
-        <div>
+        <div style={{ width: '100%' }}>
           <Slot name="Workspace.Panel" style={style.Panel}
             exposedProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}>
             {items => items[items.length - 1]}
@@ -131,7 +131,7 @@ Workspace.Panel = (props) => {
 Workspace.Canvas = (props) => {
   return (
     <Fill name="Workspace.Canvas">
-      <div>{props.children}</div>
+      <div style={{ width: '100%', height: '100%'}}>{props.children}</div>
     </Fill>
   )
 }
