@@ -91,7 +91,7 @@ interface Props {
    *  This allows you to access props on the fill which invoked the function
    *  by using target.props.something()
    */
-  exposedProps?: {[key: string]: any}
+  fillChildProps?: {[key: string]: any}
 
   /**
    * A an optional function which gets all of the current fills for this slot
@@ -127,4 +127,4 @@ interface Props {
 }
 ```
 
-You can add additional props to the Fill which can be accessed in the parent node of the slot via exposedProps.
+You can add additional props to the Fill which can be accessed in the parent node of the slot via fillChildProps.

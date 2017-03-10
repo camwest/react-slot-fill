@@ -63,7 +63,7 @@ class Workspace extends React.Component {
           <SplitPane split="vertical" minSize={300} defaultSize={425}>
             <div style={style.Panel}>
               <Slot name="Workspace.Panel"
-                exposedProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}>
+                fillChildProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}>
                 {items => items[items.length - 1]}
               </Slot>
             </div>
@@ -75,7 +75,7 @@ class Workspace extends React.Component {
       content = (
         <div style={{ width: '100%' }}>
           <Slot name="Workspace.Panel" style={style.Panel}
-            exposedProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}>
+            fillChildProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}>
             {items => items[items.length - 1]}
           </Slot>
           {canvas}

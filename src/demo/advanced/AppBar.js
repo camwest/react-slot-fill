@@ -50,10 +50,10 @@ class AppBar extends React.Component {
     return (
       <Workspace.AppBar style={style.AppBar}>
         <div style={style.AppBarGroup}>
-          <Slot name={AppBarPrimary} exposedProps={{ onActivate: this.handleActivate }} />
+          <Slot name={AppBarPrimary} fillChildProps={{ onActivate: this.handleActivate }} />
         </div>
         <div style={style.AppBarGroup}>
-          <Slot name={AppBarUtility} exposedProps={{ onActivate: this.handleActivate }}  />
+          <Slot name={AppBarUtility} fillChildProps={{ onActivate: this.handleActivate }}  />
         </div>
       </Workspace.AppBar>
     )

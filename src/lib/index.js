@@ -183,9 +183,9 @@ export class Slot extends React.Component {
     this.state.components.forEach((component, index) => {
       const { fill, elements } = component;
 
-      if (this.props.exposedProps) {
-        const exposedProps = Object.keys(this.props.exposedProps).reduce((acc, key) => {
-          const value = this.props.exposedProps[key]
+      if (this.props.fillChildProps) {
+        const fillChildProps = Object.keys(this.props.fillChildProps).reduce((acc, key) => {
+          const value = this.props.fillChildProps[key]
 
           if (typeof value === 'function') {
             acc[key] = () => value(fill, this.fills);
@@ -198,7 +198,7 @@ export class Slot extends React.Component {
 
         elements.forEach((element, index2) => {
           aggElements.push(
-            React.cloneElement(element, { key: index.toString() + index2.toString(), ...exposedProps })
+            React.cloneElement(element, { key: index.toString() + index2.toString(), ...fillChildProps })
           )
         });
       } else {

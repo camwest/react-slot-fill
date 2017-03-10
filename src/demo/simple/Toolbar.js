@@ -25,7 +25,7 @@ class Toolbar extends React.Component {
         {this.state.currentItem &&
           <h3>Current Item: {this.state.currentItem.label}</h3>}
 
-        <Slot name="Toolbar.Item" exposedProps={{ onClick: this.handleClick }} />
+        <Slot name="Toolbar.Item" fillChildProps={{ onClick: this.handleClick }} />
       </div>
     );
   }

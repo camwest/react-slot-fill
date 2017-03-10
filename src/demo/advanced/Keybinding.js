@@ -49,7 +49,7 @@ export default class Keybinding extends React.Component {
 
     return [
       <Slot name="Keybinding.Hotkey"
-        exposedProps={{ onRegistered: this.handleRegistered, onUnRegistered: this.handleUnregistered }} />,
+        fillChildProps={{ onRegistered: this.handleRegistered, onUnRegistered: this.handleUnregistered }} />,
       <Settings.Group label="Keybindings">
         <table className="collapse ba br2 b--black-10 pv2 ph3 mt4">
           <thead>
