@@ -4,6 +4,8 @@
 
 Slot & Fill component for merging React subtrees together.
 
+**WARNING** This library is considered alpha and has not been released check out the demos and feel free to give me feedback  star the repository and I'll get it released soon! 
+
 ## Installation
 
 ```
