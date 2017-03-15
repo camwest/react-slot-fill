@@ -40,7 +40,9 @@ class App extends React.Component {
     return (
       <div style={style.App}>
         <div className="AppHeader">
-          <select value={this.state.value} onChange={this.handleChange}>
+          <a className="f4 fw7 dib pa2 no-underline bg-animate bg-white hover-bg-light-blue black" href="http://github.com/camwest/react-slot-fill">github</a>
+
+          <select className="ml2" value={this.state.value} onChange={this.handleChange}>
             {Object.keys(examples).map(example =>
               <option value={example}>{examples[example].label}</option>
             )}
