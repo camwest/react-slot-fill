@@ -20,7 +20,7 @@ Run `npm start` to check out the examples locally.
 
 ### Toolbar.js
 
-```html
+```javascript
 import { Slot, Fill } from 'react-slot-fill';
 
 const Toolbar = (props) =>
@@ -38,7 +38,7 @@ Toolbar.Item = (props) =>
 
 ### Feature.js
 
-```html
+```javascript
 import Toolbar from './Toolbar';
 
 const Feature = () =>
@@ -49,7 +49,7 @@ const Feature = () =>
 
 ### App.js
 
-```html
+```javascript
 import Toolbar from './Toolbar';
 import Feature from './Feature';
 
