@@ -12,7 +12,13 @@ Slot & Fill component for merging React subtrees together.
 npm install react-slot-fill --save
 ```
 
-Run `npm start` to check out the examples locally.
+### Check out the examples locally
+
+```
+git clone https://github.com/camwest/react-slot-fill
+cd react-slot-fill
+npm start
+```
 
 ## Usage
 
