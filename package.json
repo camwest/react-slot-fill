@@ -37,7 +37,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "prepublish": "npm run build",
+    "prepublish": "npm run build-lib",
     "test-+-coverage": "react-scripts test --env=jsdom --coverage --collectCoverageFrom=src/lib/**/*.{js,jsx}",
     "send-coverage": "cat coverage/lcov.info | codacy-coverage"
   }
