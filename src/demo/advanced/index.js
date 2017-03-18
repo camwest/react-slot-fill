@@ -6,13 +6,16 @@ import Settings from './Settings';
 import Keybinding from './Keybinding';
 import Canvas from './Canvas';
 
-export const Advanced = () => [
-  <Workspace />,
-  <AppBar />,
-  <Drafting />,
-  <Settings />,
-  <Keybinding />,
-  <Canvas />
-];
+import { Provider } from '../../lib'
+
+export const Advanced = () =>
+  <Provider>
+    <Workspace />
+    <AppBar />
+    <Drafting />
+    <Settings />
+    <Keybinding />
+    <Canvas />
+  </Provider>
 
 export default Advanced;

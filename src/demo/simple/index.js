@@ -4,11 +4,14 @@ import Viewer from './Viewer';
 import News from './News';
 import Survey from './Survey';
 
-export const Simple = () => [
-  <Toolbar />,
-  <Viewer />,
-  <News />,
-  <Survey />
-];
+import { Provider } from '../../lib';
+
+export const Simple = () =>
+  <Provider>
+    <Toolbar />
+    <Viewer />
+    <News />
+    <Survey />
+  </Provider>
 
 export default Simple;

@@ -1,9 +1,47 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-const bus = document.createElement('div');
+const managerShape = PropTypes.shape({
+  onComponentsChange: PropTypes.func.isRequired,
+  removeOnComponentsChange: PropTypes.func.isRequired,
+});
+
+const busShape = PropTypes.shape({
+  dispatchEvent: PropTypes.func.isRequired
+});
+
+export class Provider extends React.Component {
+  constructor() {
+    super();
+    this._bus = document.createElement('div'); // Probably a bad pub-sub
+    this._manager = new Manager(this._bus);
+    this._manager.mount();
+  }
+
+  componentWillUnmount() {
+    this._manager.unmount();
+  }
+
+  getChildContext() {
+    return {
+      bus: this._bus,
+      manager: this._manager
+    }
+  }
+
+  render() {
+    return this.props.children;
+  }
+}
+
+Provider.childContextTypes = {
+  manager: managerShape,
+  bus: busShape
+}
 
 class Manager {
-  constructor() {
+  constructor(bus) {
+    this._bus = bus;
+
     this.handleFillMount = this.handleFillMount.bind(this);
     this.handleFillUpdated = this.handleFillUpdated.bind(this);
     this.handleFillUnmount = this.handleFillUnmount.bind(this);
@@ -39,10 +77,18 @@ class Manager {
        */
       byFill: new Map()
     };
+  }
 
-    bus.addEventListener('fill-mount', this.handleFillMount);
-    bus.addEventListener('fill-updated', this.handleFillUpdated);
-    bus.addEventListener('fill-unmount', this.handleFillUnmount);
+  mount() {
+    this._bus.addEventListener('fill-mount', this.handleFillMount);
+    this._bus.addEventListener('fill-updated', this.handleFillUpdated);
+    this._bus.addEventListener('fill-unmount', this.handleFillUnmount);
+  }
+
+  unmount() {
+    this._bus.removeEventListener('fill-mount', this.handleFillMount);
+    this._bus.removeEventListener('fill-updated', this.handleFillUpdated);
+    this._bus.removeEventListener('fill-unmount', this.handleFillUnmount);
   }
 
   handleFillMount({ detail: { fill } }) {
@@ -137,8 +183,6 @@ class Manager {
   }
 }
 
-const manager = new Manager();
-
 export class Slot extends React.Component {
   constructor(props) {
     super(props);
@@ -147,14 +191,13 @@ export class Slot extends React.Component {
   }
 
   componentWillMount() {
-    manager.onComponentsChange(this.props.name, this.handleComponentChange);
+    this.context.manager.onComponentsChange(this.props.name, this.handleComponentChange);
   }
 
   /**
    * components: Component[]
    */
   handleComponentChange(components) {
-    // debugger;
     this.setState({ components });
   }
 
@@ -164,17 +207,17 @@ export class Slot extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.name !== this.props.name) {
-      manager.removeOnComponentsChange(this.props.name, this.handleComponentChange);
+      this.context.manager.removeOnComponentsChange(this.props.name, this.handleComponentChange);
 
       const name = nextProps.name;
 
-      manager.onComponentsChange(name, this.handleComponentChange);
+      this.context.manager.onComponentsChange(name, this.handleComponentChange);
     }
   }
 
   componentWillUnmount() {
     const name = this.props.name;
-    manager.removeOnComponentsChange(name, this.handleComponentChange);
+    this.context.manager.removeOnComponentsChange(name, this.handleComponentChange);
   }
 
   render() {
@@ -219,23 +262,26 @@ export class Slot extends React.Component {
         return null;
       }
     } else {
-      // debugger;
       return aggElements;
     }
   }
 }
 
+Slot.contextTypes = {
+  manager: managerShape
+}
+
 export class Fill extends React.Component {
   componentWillMount() {
-    bus.dispatchEvent(new CustomEvent('fill-mount', {
+    this.context.bus.dispatchEvent(new CustomEvent('fill-mount', {
       detail: {
         fill: this
       }
     }));
   }
 
-  componentDidUpdate(prevProps) {
-    bus.dispatchEvent(new CustomEvent('fill-updated', {
+  componentDidUpdate() {
+    this.context.bus.dispatchEvent(new CustomEvent('fill-updated', {
       detail: {
         fill: this,
       }
@@ -243,7 +289,7 @@ export class Fill extends React.Component {
   }
 
   componentWillUnmount() {
-    bus.dispatchEvent(new CustomEvent('fill-unmount', {
+    this.context.bus.dispatchEvent(new CustomEvent('fill-unmount', {
       detail: {
         fill: this,
       }
@@ -253,4 +299,8 @@ export class Fill extends React.Component {
   render() {
     return null;
   }
+}
+
+Fill.contextTypes = {
+  bus: busShape
 }

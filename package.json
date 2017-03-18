@@ -19,6 +19,7 @@
     "react-icons": "^2.2.3",
     "react-scripts": "0.9.2",
     "react-split-pane": "^0.1.58",
+    "react-test-renderer": "next",
     "rollup": "^0.41.4",
     "rollup-plugin-babel": "^2.7.1",
     "tachyons": "^4.6.2"
