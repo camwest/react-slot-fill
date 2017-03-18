@@ -1,10 +1,12 @@
-# react-slot-fill
+# react-slot-fill &middot; [![CircleCI Status](https://circleci.com/gh/camwest/react-slot-fill.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/camwest/react-slot-fill) [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/e7c3e47817fc4a81baca16cdb9a78ac1)](https://www.codacy.com/app/cameron_4/react-slot-fill?utm_source=github.com&utm_medium=referral&utm_content=camwest/react-slot-fill&utm_campaign=Badge_Coverage) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
+
 
 ![Image](images/slot-fill-logo.png)
 
 Slot & Fill component for merging React subtrees together.
 
-**WARNING** This library is considered alpha and has not been released check out the demos and feel free to give me feedback  star the repository and I'll get it released soon! 
+**WARNING** This library is considered alpha and has not been released check out the demos and feel free to give me feedback  star the repository and I'll get it released soon!
 
 ## Installation
 

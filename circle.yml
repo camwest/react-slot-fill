@@ -3,13 +3,12 @@ machine:
     version: 7.7.3
   environment:
     PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
-
 dependencies:
   override:
     - yarn
   cache_directories:
     - ~/.cache/yarn
-
 test:
   override:
-    - yarn test -- --coverage
+    - yarn test-+-coverage
+    - yarn run send-coverage

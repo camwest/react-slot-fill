@@ -12,6 +12,7 @@
     "babel-preset-env": "^1.2.1",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.23.0",
+    "codacy-coverage": "^2.0.1",
     "gh-pages": "^0.12.0",
     "mousetrap": "^1.6.0",
     "react": "next",
@@ -36,6 +37,8 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "test-+-coverage": "react-scripts test --env=jsdom --coverage --collectCoverageFrom=src/lib/**/*.{js,jsx}",
+    "send-coverage": "cat coverage/lcov.info | codacy-coverage"
   }
 }
