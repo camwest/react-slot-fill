@@ -61,10 +61,13 @@ const Feature = () =>
 import Toolbar from './Toolbar';
 import Feature from './Feature';
 
-const App = () => [
-  <Toolbar />,
-  <Feature />
-];
+import { Provider } from 'react-slot-fill';
+
+const App = () =>
+  <Provider>
+    <Toolbar />
+    <Feature />
+  </Provider>
 
 ReactDOMFiber.render(
   <App />,
@@ -73,6 +76,10 @@ ReactDOMFiber.render(
 ```
 
 ## Components
+
+### <Provider>
+
+Creates a Slot/Fill context. All Slot/Fill components must be descendants of Provider.
 
 ### <Slot>
 
