@@ -13,7 +13,7 @@ export default () =>
                   </p>
         </div>
         <div className="pl3-ns order-1 order-2-ns mb4 mb0-ns w-100 w-40-ns">
-          <img src="http://mrmrs.io/photos/cpu.jpg" className="db" alt="Photo of a dimly lit room with a computer interface terminal." />
+          <img src="http://mrmrs.io/photos/cpu.jpg" className="db" alt="Dimly lit room with a computer interface terminal." />
         </div>
       </div>
       <p className="f6 lh-copy gray mv0">By <span className="ttu">Robin Darnell</span></p>
@@ -30,7 +30,7 @@ export default () =>
                   </p>
         </div>
         <div className="pl3-ns order-1 order-2-ns mb4 mb0-ns w-100 w-40-ns">
-          <img src="http://mrmrs.io/photos/whale.jpg" className="db" alt="Photo of a whale's tale coming crashing out of the water." />
+          <img src="http://mrmrs.io/photos/whale.jpg" className="db" alt="Whale's tale coming crashing out of the water." />
         </div>
       </div>
       <p className="f6 lh-copy gray mv0">By <span className="ttu">Katherine Grant</span></p>
