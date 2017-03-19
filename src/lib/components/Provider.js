@@ -1,4 +1,5 @@
 import React from 'react';
+import mitt from 'mitt';
 
 import { managerShape, busShape } from '../utils/PropTypes';
 import Manager from '../Manager';
@@ -7,7 +8,7 @@ import Manager from '../Manager';
 export default class Provider extends React.Component {
   constructor() {
     super();
-    this._bus = document.createElement('div'); // Probably a bad pub-sub
+    this._bus = mitt();
     this._manager = new Manager(this._bus);
     this._manager.mount();
   }
