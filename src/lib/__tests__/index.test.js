@@ -52,3 +52,57 @@ it('Fills the appropriate slot', () => {
 
   expect(fillComponent).toMatchSnapshot();
 });
+
+it('Replaces the contents of the slot with the matching fill when the slot\'s `name` property changes', () => {
+  const DynamicToolbar = ({name}) =>
+    <div>
+      <Slot name={name} />
+    </div>
+
+  // This example is contrived, but it covers Slot's componentWillReceiveProps 
+  DynamicToolbar.Active = ({ label }) =>
+    <Fill name="DynamicToolbar.Active">
+      <button>{label}</button>
+    </Fill>
+
+  DynamicToolbar.Inactive = ({ label }) =>
+    <Fill name="DynamicToolbar.Inactive">
+      <span>{label}</span>
+    </Fill>
+
+  const Feature = () => [
+    <DynamicToolbar.Active label="Home 1" />,
+    <DynamicToolbar.Inactive label="Home 1" />,
+  ]
+
+  const fillComponent = renderer.create(
+    <Provider>
+      <DynamicToolbar name="DynamicToolbar.Active" />
+      <Feature />
+    </Provider>
+  );
+
+  fillComponent.update(
+    <Provider>
+      <DynamicToolbar name="DynamicToolbar.Inactive" />
+      <Feature />
+    </Provider>
+  );
+
+  expect(fillComponent).toMatchSnapshot();
+});
+
+it('Removes the slot and fill.', () => {
+  const Feature = () => <Toolbar.Item label="Home 1" />;
+
+  const fillComponent = renderer.create(
+    <Provider>
+      <Toolbar />
+      <Feature />
+    </Provider>
+  );
+
+  fillComponent.unmount();
+
+  expect(fillComponent).toMatchSnapshot();
+});
