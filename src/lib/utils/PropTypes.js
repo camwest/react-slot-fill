@@ -6,5 +6,7 @@ export const managerShape = PropTypes.shape({
 });
 
 export const busShape = PropTypes.shape({
-  dispatchEvent: PropTypes.func.isRequired
+  emit: PropTypes.func.isRequired,
+  on: PropTypes.func.isRequired,
+  off: PropTypes.func.isRequired
 });

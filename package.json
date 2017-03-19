@@ -14,6 +14,7 @@
     "babel-preset-react": "^6.23.0",
     "codacy-coverage": "^2.0.1",
     "gh-pages": "^0.12.0",
+    "mitt": "^1.1.0",
     "mousetrap": "^1.6.0",
     "react": "next",
     "react-dom": "next",

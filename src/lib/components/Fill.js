@@ -4,27 +4,21 @@ import { busShape } from '../utils/PropTypes';
 
 export default class Fill extends React.Component {
   componentWillMount() {
-    this.context.bus.dispatchEvent(new CustomEvent('fill-mount', {
-      detail: {
-        fill: this
-      }
-    }));
+    this.context.bus.emit('fill-mount', {
+      fill: this
+    });
   }
 
   componentDidUpdate() {
-    this.context.bus.dispatchEvent(new CustomEvent('fill-updated', {
-      detail: {
-        fill: this,
-      }
-    }));
+    this.context.bus.emit('fill-updated', {
+      fill: this
+    });
   }
 
   componentWillUnmount() {
-    this.context.bus.dispatchEvent(new CustomEvent('fill-unmount', {
-      detail: {
-        fill: this,
-      }
-    }))
+    this.context.bus.emit('fill-unmount', {
+      fill: this
+    })
   }
 
   render() {

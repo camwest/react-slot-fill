@@ -42,18 +42,18 @@ export default class Manager {
   }
 
   mount() {
-    this._bus.addEventListener('fill-mount', this.handleFillMount);
-    this._bus.addEventListener('fill-updated', this.handleFillUpdated);
-    this._bus.addEventListener('fill-unmount', this.handleFillUnmount);
+    this._bus.on('fill-mount', this.handleFillMount);
+    this._bus.on('fill-updated', this.handleFillUpdated);
+    this._bus.on('fill-unmount', this.handleFillUnmount);
   }
 
   unmount() {
-    this._bus.removeEventListener('fill-mount', this.handleFillMount);
-    this._bus.removeEventListener('fill-updated', this.handleFillUpdated);
-    this._bus.removeEventListener('fill-unmount', this.handleFillUnmount);
+    this._bus.off('fill-mount', this.handleFillMount);
+    this._bus.off('fill-updated', this.handleFillUpdated);
+    this._bus.off('fill-unmount', this.handleFillUnmount);
   }
 
-  handleFillMount({ detail: { fill } }) {
+  handleFillMount({ fill }) {
     const elements = Children.toArray(fill.props.children);
     const name = fill.props.name;
     const component = { fill, elements, name };
@@ -75,7 +75,7 @@ export default class Manager {
       fn(this._db.byName[name].components));
   }
 
-  handleFillUpdated({ detail: { fill } }) {
+  handleFillUpdated({ fill }) {
     // Find the component
     const component = this._db.byFill.get(fill);
 
@@ -93,7 +93,7 @@ export default class Manager {
     });
   }
 
-  handleFillUnmount({ detail: { fill } }) {
+  handleFillUnmount({ fill }) {
     const oldComponent = this._db.byFill.get(fill);
 
     const name = oldComponent.name;
