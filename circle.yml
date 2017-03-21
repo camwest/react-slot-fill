@@ -16,4 +16,6 @@ deployment:
   production:
     branch: master
     commands:
+      - git config user.email "camwest@gmail.com"
+      - git config user.name "Cameron Westland"
       - yarn run deploy
