@@ -27,7 +27,7 @@ Array [
 
 exports[`test Removes the slot and fill. 1`] = `null`;
 
-exports[`test Replaces the contents of the slot when the slot's \`name\` property changes 1`] = `
+exports[`test Replaces the contents of the slot with the matching fill when the slot's \`name\` property changes 1`] = `
 <div>
   <span>
     Home 1
