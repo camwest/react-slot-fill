@@ -19,7 +19,7 @@
     "react": "next",
     "react-dom": "next",
     "react-icons": "^2.2.3",
-    "react-scripts": "0.9.2",
+    "react-scripts": "0.9.5",
     "react-split-pane": "^0.1.58",
     "react-test-renderer": "next",
     "rollup": "^0.41.4",
@@ -27,8 +27,7 @@
     "tachyons": "^4.6.2"
   },
   "peerDependencies": {
-    "react": "next",
-    "react-dom": "next"
+    "react": "next"
   },
   "scripts": {
     "start": "react-scripts start",
