@@ -12,3 +12,8 @@ test:
   override:
     - yarn test-+-coverage
     - yarn run send-coverage
+deployment:
+  production:
+    branch: master
+    commands:
+      - yarn run deploy
