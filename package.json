@@ -4,6 +4,9 @@
   "private": false,
   "homepage": "https://camwest.github.io/react-slot-fill",
   "main": "lib/index.js",
+  "dependencies": {
+    "mitt": "^1.1.0"
+  },
   "devDependencies": {
     "babel-cli": "^6.23.0",
     "babel-plugin-external-helpers": "^6.22.0",
@@ -14,7 +17,6 @@
     "babel-preset-react": "^6.23.0",
     "codacy-coverage": "^2.0.1",
     "gh-pages": "^0.12.0",
-    "mitt": "^1.1.0",
     "mousetrap": "^1.6.0",
     "react": "next",
     "react-dom": "next",
