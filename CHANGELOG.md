@@ -1,3 +1,8 @@
+# 1.0.0.alpha.5
+
+* [Move mutt to dependencies](https://github.com/camwest/react-slot-fill/commit/b628e8f4cf1ba83c78fb037ce147867f06bb2296)
+* [remove react-dom peerDependency. react-slot-fill should work with react-native now](https://github.com/camwest/react-slot-fill/commit/47a0a9569e90443d6addd03bb21adc6988a1a90e)
+
 # 1.0.0.alpha.4
 
 * [Replace DOM usage with mitt pub-sub](https://github.com/camwest/react-slot-fill/commit/7c4bac3d4cab2969c01362febb5deb87a6b78cc3)
