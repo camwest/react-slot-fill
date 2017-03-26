@@ -8,6 +8,10 @@
     "mitt": "^1.1.0"
   },
   "devDependencies": {
+    "@types/jest": "^19.2.2",
+    "@types/node": "^7.0.11",
+    "@types/react": "^15.0.20",
+    "@types/react-dom": "^0.14.23",
     "babel-cli": "^6.23.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
@@ -21,26 +25,28 @@
     "react": "next",
     "react-dom": "next",
     "react-icons": "^2.2.3",
-    "react-scripts": "0.9.5",
+    "react-scripts-ts": "^1.1.8",
     "react-split-pane": "^0.1.58",
     "react-test-renderer": "next",
     "rollup": "^0.41.4",
     "rollup-plugin-babel": "^2.7.1",
-    "tachyons": "^4.6.2"
+    "tachyons": "^4.6.2",
+    "tslint-react": "^2.5.0",
+    "typescript": "^2.2.1"
   },
   "peerDependencies": {
     "react": "next"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
     "build-lib": "rollup -c",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "prepublish": "npm run build-lib",
-    "test-+-coverage": "react-scripts test --env=jsdom --coverage --collectCoverageFrom=src/lib/**/*.{js,jsx}",
+    "test-+-coverage": "react-scripts-ts test --env=jsdom --coverage --collectCoverageFrom=src/lib/**/*.{js,jsx}",
     "send-coverage": "cat coverage/lcov.info | codacy-coverage"
   }
 }

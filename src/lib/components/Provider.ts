@@ -1,14 +1,21 @@
-import React from 'react';
-import mitt from 'mitt';
+import * as React from 'react';
+import * as mitt from 'mitt';
 
 import { managerShape, busShape } from '../utils/PropTypes';
 import Manager from '../Manager';
 
+export default class Provider extends React.Component<void, void> {
+  static childContextTypes = {
+    manager: managerShape,
+    bus: busShape
+  };
 
-export default class Provider extends React.Component {
+  private _bus: mitt.Emitter;
+  private _manager: Manager;
+
   constructor() {
     super();
-    this._bus = mitt();
+    this._bus = new mitt();
     this._manager = new Manager(this._bus);
     this._manager.mount();
   }
@@ -21,15 +28,10 @@ export default class Provider extends React.Component {
     return {
       bus: this._bus,
       manager: this._manager
-    }
+    };
   }
 
   render() {
     return this.props.children;
   }
-}
-
-Provider.childContextTypes = {
-  manager: managerShape,
-  bus: busShape
 }

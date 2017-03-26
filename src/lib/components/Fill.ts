@@ -1,8 +1,17 @@
-import React from 'react';
+import * as React from 'react';
 
 import { busShape } from '../utils/PropTypes';
 
-export default class Fill extends React.Component {
+export interface Props {
+  name: string | Symbol;
+  [key: string]: any;
+}
+
+export default class Fill extends React.Component<Props, void> {
+  static contextTypes = {
+    bus: busShape
+  };
+
   componentWillMount() {
     this.context.bus.emit('fill-mount', {
       fill: this
@@ -18,14 +27,10 @@ export default class Fill extends React.Component {
   componentWillUnmount() {
     this.context.bus.emit('fill-unmount', {
       fill: this
-    })
+    });
   }
 
   render() {
     return null;
   }
-}
-
-Fill.contextTypes = {
-  bus: busShape
 }
