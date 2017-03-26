@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import Toolbar from './Toolbar';
 import Viewer from './Viewer';
 
-import NewsContent from './NewsContent';
+import SurveyForm from './SurveyForm';
 
-export default class Feature extends React.Component {
-  constructor(props) {
+export default class Feature extends React.Component<any, any> {
+  constructor(props: any) {
     super(props);
     this.state = { active: false };
     this.handleActive = this.handleActive.bind(this);
@@ -22,11 +22,14 @@ export default class Feature extends React.Component {
 
   render() {
     return [
-      <Toolbar.Item label="News"
-        onActive={this.handleActive}
-        onDeactive={this.handleDeactive} />,
-      this.state.active && <Viewer.Content><NewsContent /></Viewer.Content>
+      (
+        <Toolbar.Item
+          label="Survey"
+          onActive={this.handleActive}
+          onDeactive={this.handleDeactive}
+        />
+      ),
+      this.state.active && <Viewer.Content><SurveyForm /></Viewer.Content>
     ];
   }
 }
-

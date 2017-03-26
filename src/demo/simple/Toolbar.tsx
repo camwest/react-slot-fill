@@ -1,15 +1,21 @@
-import React from 'react';
+import * as React from 'react';
 
 import { Slot, Fill } from '../../lib';
 
-class Toolbar extends React.Component {
-  constructor(props) {
+class Toolbar extends React.Component<any, any> {
+  static Item = ({ label, onActive, onDeactive }: any) => (
+    <Fill name="Toolbar.Item" label={label} onActive={onActive} onDeactive={onDeactive}>
+      <button>{label}</button>
+    </Fill>
+  )
+
+  constructor(props: any) {
     super(props);
     this.state = { currentItem: null };
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick({ props }) {
+  handleClick({ props }: any) {
     if (this.state.currentItem) {
       this.state.currentItem.onDeactive();
     }
@@ -32,8 +38,3 @@ class Toolbar extends React.Component {
 }
 
 export default Toolbar;
-
-  Toolbar.Item = ({ label, onActive, onDeactive }) =>
-    <Fill name="Toolbar.Item" label={label} onActive={onActive} onDeactive={onDeactive}>
-      <button>{label}</button>
-    </Fill>
