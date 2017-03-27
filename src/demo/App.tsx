@@ -25,7 +25,7 @@ const examples = {
   // }
 };
 
-interface State {
+export interface State {
   example: string;
 }
 

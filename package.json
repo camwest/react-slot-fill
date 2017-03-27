@@ -4,6 +4,7 @@
   "private": false,
   "homepage": "https://camwest.github.io/react-slot-fill",
   "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "dependencies": {
     "mitt": "^1.1.0"
   },
@@ -30,6 +31,8 @@
     "react-test-renderer": "next",
     "rollup": "^0.41.4",
     "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-typescript": "^0.8.1",
+    "shelljs": "^0.7.7",
     "tachyons": "^4.6.2",
     "tslint-react": "^2.5.0",
     "typescript": "^2.2.1"
@@ -40,9 +43,9 @@
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
-    "build-lib": "rollup -c",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
+    "build-lib": "rollup -c && tsc && node script/prepublish.js",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "prepublish": "npm run build-lib",
