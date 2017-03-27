@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { managerShape } from '../utils/PropTypes';
 import Manager, { Component } from '../Manager';
+import Fill from './Fill';
 
-interface Props {
+export interface Props {
   /**
    * The name of the component. Use a symbol if you want to be 100% sue the Slot
    * will only be filled by a component you create
@@ -21,11 +22,11 @@ interface Props {
   fillChildProps?: { [key: string]: any };
 }
 
-interface State {
+export interface State {
   components: Component[];
 }
 
-interface Context {
+export interface Context {
   manager: Manager;
 }
 
@@ -50,7 +51,7 @@ export default class Slot extends React.Component<Props, State> {
     this.setState({ components });
   }
 
-  get fills() {
+  get fills(): Fill[] {
     return this.state.components.map(c => c.fill);
   }
 
