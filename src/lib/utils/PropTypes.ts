@@ -1,4 +1,4 @@
-import { PropTypes } from 'react';
+import { PropTypes, Requireable } from 'react';
 
 export const managerShape = PropTypes.shape({
   onComponentsChange: PropTypes.func.isRequired,
