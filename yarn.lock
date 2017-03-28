@@ -16,6 +16,12 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-test-renderer@^15.4.2":
+  version "15.4.2"
+  resolved "https://registry.yarnpkg.com/@types/react-test-renderer/-/react-test-renderer-15.4.2.tgz#4cc8232db85f13a63411b2487fbe1d3251e11f3f"
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@^15.0.20":
   version "15.0.20"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-15.0.20.tgz#3d4a05ed04a8b1847ac6c8fa6093591d3910fba5"
