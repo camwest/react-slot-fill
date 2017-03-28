@@ -43,12 +43,11 @@
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
-    "build-lib": "node script/pre-prepublish.js && rollup -c && tsc && node script/post-prepublish.js",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "prepublish": "npm run build-lib",
+    "prepublish": "node script/prepublish.js",
     "test-+-coverage": "react-scripts-ts test --env=jsdom --coverage --collectCoverageFrom=src/lib/**/*.{ts,tsx}",
     "send-coverage": "cat coverage/lcov.info | codacy-coverage"
   }
