@@ -1,10 +1,10 @@
-import React from 'react';
-import { Slot, Fill } from '../../lib'
+import * as React from 'react';
+import * as SplitPane from 'react-split-pane';
+
 import './Workspace.css';
+import { Slot, Fill } from '../../lib';
 
-import SplitPane from 'react-split-pane';
-
-const style = {
+const style: { [key: string]: any } = {
   container: {
     background: '#FFFFFF',
     opacity: 0.85,
@@ -29,10 +29,28 @@ const style = {
     position: 'relative',
     flexGrow: 1
   }
-}
+};
 
-class Workspace extends React.Component {
-  constructor(props) {
+class Workspace extends React.Component<any, any> {
+  static AppBar = (props: any) => (
+    <Fill name="Workspace.AppBar">
+      <div style={props.style}>{props.children}</div>
+    </Fill>
+  )
+
+  static Panel = (props: any) => (
+    <Fill name="Workspace.Panel">
+      <Panel {...props} />
+    </Fill>
+  )
+
+  static Canvas = (props: any) => (
+    <Fill name="Workspace.Canvas">
+      <div style={{ width: '100%', height: '100%' }}>{props.children}</div>
+    </Fill>
+  )
+
+  constructor(props: any) {
     super(props);
     this.state = { showPanel: false, size: 500 };
     this.handleOnMount = this.handleOnMount.bind(this);
@@ -48,7 +66,7 @@ class Workspace extends React.Component {
     this.setState({ showPanel: false });
   }
 
-  handleSplitChange(size) {
+  handleSplitChange(size: any) {
     this.setState({ size });
   }
 
@@ -62,21 +80,25 @@ class Workspace extends React.Component {
         <div style={style.SplitPaneContainer}>
           <SplitPane split="vertical" minSize={300} defaultSize={425}>
             <div style={style.Panel}>
-              <Slot name="Workspace.Panel"
-                fillChildProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}>
-                {items => items[items.length - 1]}
+              <Slot
+                name="Workspace.Panel"
+                fillChildProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}
+              >
+                {(items: any) => <div>{items[items.length - 1]}</div>}
               </Slot>
             </div>
             {canvas}
           </SplitPane>
         </div>
-      )
+      );
     } else {
       content = (
         <div style={{ width: '100%' }}>
-          <Slot name="Workspace.Panel" style={style.Panel}
-            fillChildProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}>
-            {items => items[items.length - 1]}
+          <Slot
+            name="Workspace.Panel"
+            fillChildProps={{ onMount: this.handleOnMount, onUnmount: this.handleOnUnmount }}
+          >
+            {(items: any) => <div>{items[items.length - 1]}</div>}
           </Slot>
           {canvas}
         </div>
@@ -94,12 +116,7 @@ class Workspace extends React.Component {
   }
 }
 
-Workspace.AppBar = (props) =>
-  <Fill name="Workspace.AppBar">
-    <div style={props.style}>{props.children}</div>
-  </Fill>
-
-class Panel extends React.Component {
+class Panel extends React.Component<any, any> {
   componentDidMount() {
     this.props.onMount();
   }
@@ -113,28 +130,13 @@ class Panel extends React.Component {
       ? <h3>{this.props.title}</h3>
       : null;
 
-    return [
-      title,
-      this.props.children
-    ];
+    return (
+      <div>
+        {title}
+        {this.props.children}
+      </div>
+    );
   }
 }
 
-Workspace.Panel = (props) => {
-  return (
-    <Fill name="Workspace.Panel">
-      <Panel {...props} />
-    </Fill>
-  );
-}
-
-Workspace.Canvas = (props) => {
-  return (
-    <Fill name="Workspace.Canvas">
-      <div style={{ width: '100%', height: '100%'}}>{props.children}</div>
-    </Fill>
-  )
-}
-
 export default Workspace;
-

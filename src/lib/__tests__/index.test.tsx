@@ -39,8 +39,10 @@ it('Fills the a simple slot', () => {
 
   const fillComponent = renderer.create(
     <Provider>
-      <Toolbar />
-      <Feature />
+      <div>
+        <Toolbar />
+        <Feature />
+      </div>
     </Provider>
   );
 
@@ -50,19 +52,23 @@ it('Fills the a simple slot', () => {
 it('Fills the appropriate slot', () => {
   class Feature extends React.Component<any, any> {
     render() {
-      return [
-        <Toolbar.Item label="Home 2" />,
-        <Toolbar.Item label="About" />,
-        <Footer.Item label="Twitter" href="twitter.com/reactjs" />,
-      ];
+      return (
+        <div>
+          <Toolbar.Item label="Home 2" />,
+          <Toolbar.Item label="About" />,
+          <Footer.Item label="Twitter" href="twitter.com/reactjs" />,
+      </div>
+      );
     }
   }
 
   const fillComponent = renderer.create(
     <Provider>
-      <Toolbar />
-      <Footer />
-      <Feature />
+      <div>
+        <Toolbar />
+        <Footer />
+        <Feature />
+      </div>
     </Provider>
   );
 
@@ -96,10 +102,12 @@ it('Replaces the contents of the slot with the matching fill when the slot\'s `n
 
   class Feature extends React.Component<any, any> {
     render() {
-      return [
-        <DynamicToolbar.Active label="Home 1" />,
-        <DynamicToolbar.Inactive label="Home 1" />,
-      ];
+      return (
+        <div>
+          <DynamicToolbar.Active label="Home 1" />,
+          <DynamicToolbar.Inactive label="Home 1" />,
+        </div>
+      );
     }
   }
 

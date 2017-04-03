@@ -9,10 +9,12 @@ import { Provider } from '../../lib';
 export const Simple = () =>
   (
     <Provider>
-      <Toolbar />
-      <Viewer />
-      <News />
-      <Survey />
+      <div>
+        <Toolbar />
+        <Viewer />
+        <News />
+        <Survey />
+      </div>
     </Provider>
   );
 

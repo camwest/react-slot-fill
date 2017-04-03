@@ -32,6 +32,6 @@ export default class Provider extends React.Component<void, void> {
   }
 
   render() {
-    return this.props.children;
+    return React.Children.only(this.props.children);
   }
 }

@@ -13,7 +13,7 @@ export default class Viewer extends React.Component<any, void> {
       <div>
         <h2>Content</h2>
         <Slot name="Viewer.Content">
-          {(items: any) => items[items.length - 1]}
+          {(items: any) => <div>{items[items.length - 1]}</div>}
         </Slot>
       </div>
     );
