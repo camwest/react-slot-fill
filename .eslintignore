@@ -1,1 +1,4 @@
 **/*.d.ts
+build
+coverage
+lib
