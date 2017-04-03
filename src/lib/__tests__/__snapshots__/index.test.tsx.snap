@@ -1,36 +1,51 @@
 exports[`test Fills the a simple slot 1`] = `
 <div>
-  <button>
-    Home 1
-  </button>
+  <div>
+    <div>
+      <button>
+        Home 1
+      </button>
+    </div>
+  </div>
 </div>
 `;
 
 exports[`test Fills the appropriate slot 1`] = `
-Array [
+<div>
   <div>
-    <button>
+    <div>
+      <button>
         Home 2
-    </button>
-    <button>
+      </button>
+      <button>
         About
-    </button>
-</div>,
+      </button>
+    </div>
+  </div>
   <div>
-    <a
+    <div>
+      <a
         href="twitter.com/reactjs">
         Twitter
-    </a>
-</div>,
-]
+      </a>
+    </div>
+  </div>
+  <div />
+</div>
 `;
-
-exports[`test Removes the slot and fill. 1`] = `null`;
 
 exports[`test Replaces the contents of the slot with the matching fill when the slot's \`name\` property changes 1`] = `
 <div>
-  <span>
-    Home 1
-  </span>
+  <div>
+    <div>
+      <span>
+        Home 1
+      </span>
+    </div>
+  </div>
+  <div>
+    ,
+    ,
+  </div>
 </div>
 `;
