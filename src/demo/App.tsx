@@ -1,5 +1,5 @@
 import * as React from 'react';
-// import Advanced from './advanced';
+import Advanced from './advanced';
 import Simple from './simple';
 
 import './App.css';
@@ -19,10 +19,10 @@ const examples = {
     extensions: <Simple />
   },
 
-  // advanced: {
-  //   label: 'Advanced',
-  //   extensions: <Advanced />
-  // }
+  advanced: {
+    label: 'Advanced',
+    extensions: <Advanced />
+  }
 };
 
 export interface State {
@@ -47,7 +47,7 @@ class App extends React.Component<void, State> {
 
           <select className="ml2" value={this.state.example} onChange={this.handleChange}>
             {Object.keys(examples).map(example =>
-              <option value={example}>{examples[example].label}</option>
+              <option key={examples[example].label} value={example}>{examples[example].label}</option>
             )}
           </select>
         </div>

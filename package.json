@@ -10,8 +10,10 @@
   },
   "devDependencies": {
     "@types/jest": "^19.2.2",
+    "@types/mousetrap": "^1.5.33",
     "@types/node": "^7.0.11",
     "@types/react-dom": "^0.14.23",
+    "@types/react-split-pane": "^0.1.7",
     "@types/react-test-renderer": "^15.4.2",
     "babel-cli": "^6.23.0",
     "babel-plugin-external-helpers": "^6.22.0",
@@ -23,12 +25,12 @@
     "codacy-coverage": "^2.0.1",
     "gh-pages": "^0.12.0",
     "mousetrap": "^1.6.0",
-    "react": "next",
-    "react-dom": "next",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
     "react-icons": "^2.2.3",
     "react-scripts-ts": "^1.1.8",
     "react-split-pane": "^0.1.58",
-    "react-test-renderer": "next",
+    "react-test-renderer": "^15.4.2",
     "rollup": "^0.41.4",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-typescript": "^0.8.1",
@@ -38,7 +40,7 @@
     "typescript": "^2.2.1"
   },
   "peerDependencies": {
-    "react": "next"
+    "react": "^15.4.2"
   },
   "scripts": {
     "start": "react-scripts-ts start",

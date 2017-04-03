@@ -1,7 +1,7 @@
-import * as React from 'react';
 import { managerShape } from '../utils/PropTypes';
-import Manager, { Component } from '../Manager';
+import * as React from 'react';
 import Fill from './Fill';
+import Manager, { Component } from '../Manager';
 
 export interface Props {
   /**
@@ -114,15 +114,20 @@ export default class Slot extends React.Component<Props, State> {
     });
 
     if (typeof this.props.children === 'function') {
-      const results = this.props.children(aggElements);
+      const element = this.props.children(aggElements);
 
-      if (results) {
-        return results;
+      if (React.isValidElement(element)) {
+        return element;
       } else {
-        return null;
+        const untypedThis: any = this;
+        const parentConstructor = untypedThis._reactInternalInstance._currentElement._owner._instance.constructor;
+        const displayName = parentConstructor.displayName || parentConstructor.name;
+        const message = `Slot rendered with function must return a valid React ` +
+          `Element. Check the ${displayName} render function.`;
+        throw new Error(message);
       }
     } else {
-      return aggElements;
+      return React.createElement('div', {}, aggElements);
     }
   }
 }

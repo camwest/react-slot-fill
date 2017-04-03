@@ -21,15 +21,15 @@ export default class Feature extends React.Component<any, any> {
   }
 
   render() {
-    return [
-      (
+    return (
+      <div>
         <Toolbar.Item
           label="Survey"
           onActive={this.handleActive}
           onDeactive={this.handleDeactive}
         />
-      ),
-      this.state.active && <Viewer.Content><SurveyForm /></Viewer.Content>
-    ];
+        {this.state.active && <Viewer.Content><SurveyForm /></Viewer.Content>}
+      </div>
+    );
   }
 }

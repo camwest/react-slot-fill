@@ -10,20 +10,6 @@ if (test('-e', path.join(__dirname, '..', 'lib'))) {
 }
 
 /**
- * Move @types/react into node_modules
- */
-
-rm('-Rf', path.join(__dirname, '..', 'node_modules', '@types', 'react'));
-
-cp(
-  '-r',
-  path.join(__dirname, '..', 'node_modules_temp', '@types', 'react', '/'),
-  path.join(__dirname, '..', 'node_modules', '@types')
-);
-
-console.log('Installing custom node_modules/@types/react');
-
-/**
  * Run rollup
  */
 exec('rollup -c', { silent: true });
