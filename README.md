@@ -81,7 +81,7 @@ ReactDOMFiber.render(
 
 ### <Provider>
 
-Creates a Slot/Fill context. All Slot/Fill components must be descendants of Provider.
+Creates a Slot/Fill context. All Slot/Fill components must be descendants of Provider. You may only pass a single descendant to `Provider`.
 
 ### <Slot>
 
@@ -116,6 +116,14 @@ interface Props {
    * A an optional function which gets all of the current fills for this slot
    * Allows sorting, or filtering before rendering. An example use-case could
    * be to only show a limited amount of fills.
+   *
+   * By default Slot injects an unstyled `<div>` element. If you want greater
+   * control over presentation use this function.
+   *
+   * @example
+   * <Slot name="My.Slot">
+   * {(items) => <Component>{items}</Component>}
+   * </Slot>
    */
   children?: (fills) => JSX.Element
 }
@@ -128,7 +136,6 @@ Render children into a Slot
 ```javascript
 import { Fill } from 'react-slot-fill';
 ```
-
 
 #### Props
 
