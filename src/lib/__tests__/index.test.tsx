@@ -47,7 +47,7 @@ it('Fills the a simple slot', () => {
   );
 
   expect(fillComponent).toMatchSnapshot();
-})
+});
 
 it('Fills the appropriate slot', () => {
   class Feature extends React.Component<any, any> {
