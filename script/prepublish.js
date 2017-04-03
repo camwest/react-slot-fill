@@ -29,7 +29,7 @@ console.log('Generating .d.ts files');
  * Copy .d.ts files into lib
  */
 
-const r = path.join(__dirname, '..', 'build', 'dist');
+const r = path.join(__dirname, '..', 'build', 'dist')
 
 const directories = new Set();
 const files = new Map();
