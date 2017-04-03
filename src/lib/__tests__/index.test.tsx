@@ -54,10 +54,10 @@ it('Fills the appropriate slot', () => {
     render() {
       return (
         <div>
-          <Toolbar.Item label="Home 2" />,
-          <Toolbar.Item label="About" />,
-          <Footer.Item label="Twitter" href="twitter.com/reactjs" />,
-      </div>
+          <Toolbar.Item label="Home 2" />
+          <Toolbar.Item label="About" />
+          <Footer.Item label="Twitter" href="twitter.com/reactjs" />
+        </div>
       );
     }
   }
@@ -113,32 +113,21 @@ it('Replaces the contents of the slot with the matching fill when the slot\'s `n
 
   const fillComponent: any = renderer.create(
     <Provider>
-      <DynamicToolbar name="DynamicToolbar.Active" />
-      <Feature />
+      <div>
+        <DynamicToolbar name="DynamicToolbar.Active" />
+        <Feature />
+      </div>
     </Provider>
   );
 
   fillComponent.update(
     <Provider>
-      <DynamicToolbar name="DynamicToolbar.Inactive" />
-      <Feature />
+      <div>
+        <DynamicToolbar name="DynamicToolbar.Inactive" />
+        <Feature />
+      </div>
     </Provider>
   );
-
-  expect(fillComponent).toMatchSnapshot();
-});
-
-it('Removes the slot and fill.', () => {
-  const Feature = () => <Toolbar.Item label="Home 1" />;
-
-  const fillComponent: any = renderer.create(
-    <Provider>
-      <Toolbar />
-      <Feature />
-    </Provider>
-  );
-
-  fillComponent.unmount();
 
   expect(fillComponent).toMatchSnapshot();
 });
