@@ -55,6 +55,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "prepublish": "node script/prepublish.js",
+    "lint": "eslint .",
     "test-+-coverage": "react-scripts-ts test --env=jsdom --coverage --collectCoverageFrom=src/lib/**/*.{ts,tsx}",
     "send-coverage": "cat coverage/lcov.info | codacy-coverage"
   }
