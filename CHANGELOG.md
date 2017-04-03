@@ -1,3 +1,8 @@
+# 1.0.0.alpha.6
+
+* [Converted to TypeScript](https://github.com/camwest/react-slot-fill/pull/10)
+* React 15.x is now supported and extra div elements will be inserted where needed
+
 # 1.0.0.alpha.5
 
 * [Move mutt to dependencies](https://github.com/camwest/react-slot-fill/commit/b628e8f4cf1ba83c78fb037ce147867f06bb2296)
@@ -31,4 +36,3 @@ oops! no changes
 
 Initial Release. Note this requires react-fiber to function correctly since Slot
 returns an array of elements which is only supported there.
-
