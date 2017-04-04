@@ -75,6 +75,33 @@ it('Fills the appropriate slot', () => {
   expect(fillComponent).toMatchSnapshot();
 });
 
+it('allows slots to render null', () => {
+  const Extensible = () => {
+    return (
+      <Slot name="Slot">
+        {(items: any) => {
+          return null;
+        }}
+      </Slot>
+    );
+  };
+
+  const Insertion = () => (
+    <Fill name="Slot"><span>Hello world!</span></Fill>
+  );
+
+  const tree: any = renderer.create(
+    <Provider>
+      <div>
+        <Extensible />
+        <Insertion />
+      </div>
+    </Provider>
+  );
+
+  expect(tree).toMatchSnapshot();
+});
+
 it('Replaces the contents of the slot with the matching fill when the slot\'s `name` property changes', () => {
 
   class DynamicToolbar extends React.Component<any, any> {

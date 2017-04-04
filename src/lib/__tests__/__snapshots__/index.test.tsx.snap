@@ -49,3 +49,5 @@ exports[`test Replaces the contents of the slot with the matching fill when the 
   </div>
 </div>
 `;
+
+exports[`test allows slots to render null 1`] = `<div />`;

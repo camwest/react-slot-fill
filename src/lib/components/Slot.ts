@@ -116,7 +116,7 @@ export default class Slot extends React.Component<Props, State> {
     if (typeof this.props.children === 'function') {
       const element = this.props.children(aggElements);
 
-      if (React.isValidElement(element)) {
+      if (React.isValidElement(element) || element === null) {
         return element;
       } else {
         const untypedThis: any = this;
