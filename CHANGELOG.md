@@ -1,3 +1,7 @@
+# 1.0.0.alpha.7
+
+* Fix bug where Slot couldn't render null
+
 # 1.0.0.alpha.6
 
 * [Converted to TypeScript](https://github.com/camwest/react-slot-fill/pull/10)
