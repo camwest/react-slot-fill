@@ -3,6 +3,7 @@ import * as mitt from 'mitt';
 
 import { managerShape, busShape } from '../utils/PropTypes';
 import Manager from '../Manager';
+import Fill from './Fill';
 
 export default class Provider extends React.Component<void, void> {
   static childContextTypes = {
@@ -33,5 +34,19 @@ export default class Provider extends React.Component<void, void> {
 
   render() {
     return React.Children.only(this.props.children);
+  }
+
+  /**
+   * Returns instances of Fill react components
+   */
+  getFillsByName(name: string): Fill[] {
+    return this._manager.getFillsByName(name);
+  }
+
+  /**
+   * Return React elements that were inside Fills
+   */
+  getChildrenByName(name: string): React.ReactChild[] {
+    return this._manager.getChildrenByName(name);
   }
 }
