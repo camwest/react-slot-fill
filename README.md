@@ -83,6 +83,22 @@ ReactDOMFiber.render(
 
 Creates a Slot/Fill context. All Slot/Fill components must be descendants of Provider. You may only pass a single descendant to `Provider`.
 
+```typescript
+interface Provider {
+  /**
+   * Returns instances of Fill react components
+   */
+  getFillsByName(name: string): Fill[];
+  /**
+   * Return React elements that were inside Fills
+   */
+  getChildrenByName(name: string): React.ReactChild[];
+}
+```
+
+`getFillsByName` and `getChildrenByName` are really useful for testing Fill components.
+See [src/lib/__tests/Provider.test.tsx](src/lib/__tests/Provider.test.tsx) for an example.
+
 ### <Slot>
 
 Expose a global extension point
