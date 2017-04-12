@@ -150,6 +150,28 @@ export default class Manager {
     }
   }
 
+  getFillsByName(name: string): Fill[] {
+    const registration = this._db.byName.get(name);
+
+    if (!registration) {
+      return [];
+    } else {
+      return registration.components.map(c => c.fill)
+    }
+  }
+
+  getChildrenByName(name: string): React.ReactChild[] {
+    const registration = this._db.byName.get(name);
+
+    if (!registration) {
+      return [];
+    } else {
+      return registration.components
+        .map(component => component.children)
+        .reduce((acc, memo) => acc.concat(memo), []);
+    }
+  }
+
   /**
    * Removes previous listener
    *
