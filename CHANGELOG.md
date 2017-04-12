@@ -1,3 +1,7 @@
+# 1.0.0.alpha.8
+
+* add Provider#getFillsByName and Provider#getChildrenByName (#13)
+
 # 1.0.0.alpha.7
 
 * Fix bug where Slot couldn't render null
