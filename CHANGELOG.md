@@ -1,6 +1,10 @@
-# 1.0.0.alpha.8
+# 1.0.0.alpha.9
 
 * add Provider#getFillsByName and Provider#getChildrenByName (#13)
+
+# 1.0.0.alpha.8
+
+* Bad build
 
 # 1.0.0.alpha.7
 
