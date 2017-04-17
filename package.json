@@ -6,7 +6,7 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "dependencies": {
-    "mitt": "^1.1.0"
+    "mitt": "1.1.0"
   },
   "devDependencies": {
     "@types/enzyme": "^2.7.8",
