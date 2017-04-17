@@ -1,3 +1,7 @@
+# 1.0.0.alpha.10
+
+* lock down mitt version due to breaking change
+
 # 1.0.0.alpha.9
 
 * add Provider#getFillsByName and Provider#getChildrenByName (#13)
