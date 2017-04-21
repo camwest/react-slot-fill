@@ -156,7 +156,7 @@ export default class Manager {
     if (!registration) {
       return [];
     } else {
-      return registration.components.map(c => c.fill)
+      return registration.components.map(c => c.fill);
     }
   }
 
