@@ -3,6 +3,8 @@ import * as React from 'react';
 import Fill from './Fill';
 import Manager, { Component } from '../Manager';
 
+import { Requireable } from 'prop-types';
+
 export interface Props {
   /**
    * The name of the component. Use a symbol if you want to be 100% sue the Slot

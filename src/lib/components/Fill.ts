@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { busShape } from '../utils/PropTypes';
+import { Requireable } from 'prop-types';
 
 export interface Props {
   name: string | Symbol;

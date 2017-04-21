@@ -29,7 +29,7 @@ export interface State {
   example: string;
 }
 
-class App extends React.Component<void, State> {
+class App extends React.Component<{}, State> {
   constructor() {
     super();
     this.state = { example: Object.keys(examples)[0] };

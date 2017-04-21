@@ -1,11 +1,13 @@
 import * as React from 'react';
 import * as mitt from 'mitt';
 
+import { Requireable } from 'prop-types';
+
 import { managerShape, busShape } from '../utils/PropTypes';
 import Manager from '../Manager';
 import Fill from './Fill';
 
-export default class Provider extends React.Component<void, void> {
+export default class Provider extends React.Component<{}, {}> {
   static childContextTypes = {
     manager: managerShape,
     bus: busShape

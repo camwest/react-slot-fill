@@ -3,7 +3,8 @@
   "version": "1.0.0-alpha.10",
   "private": false,
   "homepage": "https://camwest.github.io/react-slot-fill",
-  "main": "lib/index.js",
+  "module": "lib/rsf.es.js",
+  "main": "lib/rsf.js",
   "typings": "lib/index.d.ts",
   "dependencies": {
     "mitt": "1.1.0"
@@ -13,6 +14,7 @@
     "@types/jest": "^19.2.2",
     "@types/mousetrap": "^1.5.33",
     "@types/node": "^7.0.11",
+    "@types/prop-types": "^15.5.1",
     "@types/react-dom": "^0.14.23",
     "@types/react-split-pane": "^0.1.7",
     "@types/react-test-renderer": "^15.4.2",
@@ -32,6 +34,7 @@
     "eslint-plugin-react": "^6.10.3",
     "gh-pages": "^0.12.0",
     "mousetrap": "^1.6.0",
+    "prop-types": "^15.5.8",
     "react": "^15.4.2",
     "react-addons-test-utils": "^15.5.1",
     "react-dom": "^15.4.2",
@@ -48,7 +51,8 @@
     "typescript": "^2.2.1"
   },
   "peerDependencies": {
-    "react": "^15.4.2"
+    "prop-types": "^15.5.8",
+    "react": "^15.5.8"
   },
   "scripts": {
     "start": "react-scripts-ts start",

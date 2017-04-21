@@ -14,7 +14,7 @@ if (test('-e', path.join(__dirname, '..', 'lib'))) {
 /**
  * Run rollup
  */
-exec('rollup -c', { silent: true });
+exec('rollup -c', { silent: false });
 
 console.log('Building lib');
 
