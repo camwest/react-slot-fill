@@ -1,3 +1,7 @@
+# 1.0.0.alpha.11
+
+* update to support React 15.5.x and TypeScript 2.3.x
+
 # 1.0.0.alpha.10
 
 * lock down mitt version due to breaking change

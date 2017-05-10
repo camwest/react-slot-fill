@@ -8,6 +8,7 @@
       "es6",
       "dom"
     ],
+    "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "jsx": "react",
     "moduleResolution": "node",
