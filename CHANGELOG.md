@@ -1,3 +1,7 @@
+# 1.0.0.alpha.12
+
+* fix issue with mitt es6 imports in webpack 2
+
 # 1.0.0.alpha.11
 
 * update to support React 15.5.x and TypeScript 2.3.x
