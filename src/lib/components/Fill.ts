@@ -8,7 +8,7 @@ export interface Props {
   [key: string]: any;
 }
 
-export default class Fill extends React.Component<Props, void> {
+export default class Fill extends React.Component<Props, {}> {
   static contextTypes = {
     bus: busShape
   };
