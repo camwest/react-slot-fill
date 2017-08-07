@@ -1,5 +1,5 @@
 import * as React from 'react';
-import mitt from 'mitt';
+import * as mitt from 'mitt';
 
 import { Requireable } from 'prop-types';
 
