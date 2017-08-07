@@ -1,5 +1,5 @@
 import fs from 'fs';
-import typescript from 'rollup-plugin-typescript';
+import typescript from 'rollup-plugin-typescript2';
 
 const pkg = JSON.parse(fs.readFileSync('./package.json'));
 
