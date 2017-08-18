@@ -1,3 +1,8 @@
+# 1.0.0
+
+* Fix issue with Fill typescript definitions
+* First proper 1.0.0 release
+
 # 1.0.0.alpha.12
 
 * fix issue with mitt es6 imports in webpack 2
