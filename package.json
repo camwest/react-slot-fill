@@ -1,6 +1,6 @@
 {
   "name": "react-slot-fill",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "homepage": "https://camwest.github.io/react-slot-fill",
   "module": "lib/rsf.es.js",
