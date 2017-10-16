@@ -4,7 +4,7 @@ import './App.css';
 export interface State {
     example: string;
 }
-declare class App extends React.Component<void, State> {
+declare class App extends React.Component<{}, State> {
     constructor();
     handleChange(event: React.ChangeEvent<HTMLSelectElement>): void;
     render(): JSX.Element;

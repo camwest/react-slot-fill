@@ -37,6 +37,8 @@ export default class Manager {
      * name: String, fn: (components: Component[]) => void
      */
     onComponentsChange(name: Name, fn: Listener): void;
+    getFillsByName(name: string): Fill[];
+    getChildrenByName(name: string): React.ReactChild[];
     /**
      * Removes previous listener
      *

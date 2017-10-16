@@ -1,4 +1,3 @@
-/// <reference types="react" />
-import { Requireable } from 'react';
-export declare const managerShape: Requireable<any>;
-export declare const busShape: Requireable<any>;
+import * as PropTypes from 'prop-types';
+export declare const managerShape: PropTypes.Requireable<any>;
+export declare const busShape: PropTypes.Requireable<any>;

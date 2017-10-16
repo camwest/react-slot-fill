@@ -2,6 +2,7 @@
 import * as React from 'react';
 import Fill from './Fill';
 import Manager, { Component } from '../Manager';
+import { Requireable } from 'prop-types';
 export interface Props {
     /**
      * The name of the component. Use a symbol if you want to be 100% sue the Slot
@@ -29,7 +30,7 @@ export interface Context {
 }
 export default class Slot extends React.Component<Props, State> {
     static contextTypes: {
-        manager: React.Requireable<any>;
+        manager: Requireable<any>;
     };
     context: Context;
     constructor(props: Props);
@@ -38,5 +39,5 @@ export default class Slot extends React.Component<Props, State> {
     readonly fills: Fill[];
     componentWillReceiveProps(nextProps: Props): void;
     componentWillUnmount(): void;
-    render(): React.ReactElement<{}>;
+    render(): any;
 }
