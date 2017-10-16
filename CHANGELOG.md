@@ -1,3 +1,8 @@
+# 1.0.2
+
+* Update React peerDependency to ^16.0.0
+
+
 # 1.0.0
 
 * Fix issue with Fill typescript definitions

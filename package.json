@@ -1,6 +1,6 @@
 {
   "name": "react-slot-fill",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": false,
   "homepage": "https://camwest.github.io/react-slot-fill",
   "module": "lib/rsf.es.js",
@@ -63,7 +63,8 @@
     "deploy": "gh-pages -d build",
     "prepublish": "node script/prepublish.js",
     "lint": "eslint .",
-    "test-+-coverage": "react-scripts-ts test --env=jsdom --coverage --collectCoverageFrom=src/lib/**/*.{ts,tsx}",
+    "test-+-coverage":
+      "react-scripts-ts test --env=jsdom --coverage --collectCoverageFrom=src/lib/**/*.{ts,tsx}",
     "send-coverage": "cat coverage/lcov.info | codacy-coverage"
   }
 }
