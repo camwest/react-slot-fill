@@ -1,6 +1,9 @@
 import * as React from 'react';
-import { mount } from 'enzyme';
+import { configure, mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import { Fill, Slot, Provider } from '../';
+
+configure({ adapter: new Adapter() });
 
 it('tests foo', () => {
   const wrapper = mount(

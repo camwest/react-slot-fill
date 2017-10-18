@@ -1,47 +1,42 @@
-exports[`test Fills the a simple slot 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Fills the a simple slot 1`] = `
 <div>
   <div>
-    <div>
-      <button>
-        Home 1
-      </button>
-    </div>
+    <button>
+      Home 1
+    </button>
   </div>
 </div>
 `;
 
-exports[`test Fills the appropriate slot 1`] = `
+exports[`Fills the appropriate slot 1`] = `
 <div>
   <div>
-    <div>
-      <button>
-        Home 2
-      </button>
-      <button>
-        About
-      </button>
-    </div>
+    <button>
+      Home 2
+    </button>
+    <button>
+      About
+    </button>
   </div>
   <div>
-    <div>
-      <a
-        href="twitter.com/reactjs">
-        Twitter
-      </a>
-    </div>
+    <a
+      href="twitter.com/reactjs"
+    >
+      Twitter
+    </a>
   </div>
   <div />
 </div>
 `;
 
-exports[`test Replaces the contents of the slot with the matching fill when the slot's \`name\` property changes 1`] = `
+exports[`Replaces the contents of the slot with the matching fill when the slot's \`name\` property changes 1`] = `
 <div>
   <div>
-    <div>
-      <span>
-        Home 1
-      </span>
-    </div>
+    <span>
+      Home 1
+    </span>
   </div>
   <div>
     ,
@@ -50,4 +45,4 @@ exports[`test Replaces the contents of the slot with the matching fill when the 
 </div>
 `;
 
-exports[`test allows slots to render null 1`] = `<div />`;
+exports[`allows slots to render null 1`] = `<div />`;
