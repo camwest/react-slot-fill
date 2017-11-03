@@ -92,7 +92,7 @@ export default class Slot extends React.Component<Props, State> {
           return acc;
         };
 
-        const fillChildProps2 = Object.keys(this.props.fillChildProps).reduce(transform, {});
+        const fillChildProps2 = Object.keys(fillChildProps).reduce(transform, {});
 
         children.forEach((child, index2) => {
           if (typeof child === 'number' || typeof child === 'string') {
@@ -129,7 +129,7 @@ export default class Slot extends React.Component<Props, State> {
         throw new Error(message);
       }
     } else {
-      return React.createElement('div', {}, aggElements);
+      return aggElements;
     }
   }
 }
