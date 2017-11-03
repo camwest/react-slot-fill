@@ -42,7 +42,7 @@
     "react-scripts-ts": "^1.1.8",
     "react-split-pane": "^0.1.58",
     "react-test-renderer": "^15.4.2",
-    "rollup": "^0.41.4",
+    "rollup": "^0.50.0",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-typescript2": "^0.5.0",
     "shelljs": "^0.7.7",
