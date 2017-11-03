@@ -4,16 +4,16 @@ import typescript from 'rollup-plugin-typescript2';
 const pkg = JSON.parse(fs.readFileSync('./package.json'));
 
 export default {
-  entry: 'src/lib/index.ts',
+  input: 'src/lib/index.ts',
   plugins: [
     typescript({
       typescript: require('typescript')
     })
   ],
 
-  targets: [
-    { dest: pkg.main, format: 'cjs' },
-    { dest: pkg.module, format: 'es' }
+  output: [
+    { file: pkg.main, format: 'cjs' },
+    { file: pkg.module, format: 'es' }
   ],
 
   external: ['react', 'prop-types', 'mitt']
