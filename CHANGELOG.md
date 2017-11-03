@@ -1,3 +1,7 @@
+# 2.0.0
+
+* Remove react-dom requirement and require React 16
+
 # 1.0.2
 
 * Update React peerDependency to ^16.0.0
