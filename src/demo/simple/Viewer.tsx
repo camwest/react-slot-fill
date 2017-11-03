@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Slot, Fill } from '../../lib';
 
-export default class Viewer extends React.Component<any, void> {
+export default class Viewer extends React.Component<any, {}> {
   static Content = (props: any) => (
     <Fill name="Viewer.Content">
       <div>{props.children}</div>

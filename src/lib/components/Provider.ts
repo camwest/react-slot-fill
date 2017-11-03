@@ -34,7 +34,7 @@ export default class Provider extends React.Component<any, any> {
     };
   }
 
-  render() {
+  render(): any {
     return this.props.children;
   }
 
