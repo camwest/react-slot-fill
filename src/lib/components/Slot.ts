@@ -1,7 +1,7 @@
-import {managerShape} from '../utils/PropTypes';
+import { managerShape } from '../utils/PropTypes';
 import * as React from 'react';
 import Fill from './Fill';
-import Manager, {Component} from '../Manager';
+import Manager, { Component } from '../Manager';
 
 export interface Props {
   /**
@@ -24,7 +24,6 @@ export interface Props {
 
 export interface State {
   components: Component[];
-  previousName: string | Symbol;
 }
 
 export interface Context {
@@ -40,7 +39,7 @@ export default class Slot extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    this.state = { components: [], previousName: props.name };
+    this.state = { components: [] };
     this.handleComponentChange = this.handleComponentChange.bind(this);
   }
 
