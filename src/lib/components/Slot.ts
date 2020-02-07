@@ -1,9 +1,7 @@
-import { managerShape } from '../utils/PropTypes';
+import {managerShape} from '../utils/PropTypes';
 import * as React from 'react';
 import Fill from './Fill';
-import Manager, { Component } from '../Manager';
-
-import { Requireable } from 'prop-types';
+import Manager, {Component} from '../Manager';
 
 export interface Props {
   /**
@@ -26,6 +24,7 @@ export interface Props {
 
 export interface State {
   components: Component[];
+  previousName: string | Symbol;
 }
 
 export interface Context {
@@ -41,11 +40,11 @@ export default class Slot extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    this.state = { components: [] };
+    this.state = { components: [], previousName: props.name };
     this.handleComponentChange = this.handleComponentChange.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.context.manager.onComponentsChange(this.props.name, this.handleComponentChange);
   }
 
@@ -57,13 +56,10 @@ export default class Slot extends React.Component<Props, State> {
     return this.state.components.map(c => c.fill);
   }
 
-  componentWillReceiveProps(nextProps: Props) {
-    if (nextProps.name !== this.props.name) {
-      this.context.manager.removeOnComponentsChange(this.props.name, this.handleComponentChange);
-
-      const name = nextProps.name;
-
-      this.context.manager.onComponentsChange(name, this.handleComponentChange);
+  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, prevContext: any): void {
+    if (this.props.name !== prevProps.name) {
+      this.context.manager.removeOnComponentsChange(prevProps.name, this.handleComponentChange);
+      this.context.manager.onComponentsChange(this.props.name, this.handleComponentChange);
     }
   }
 
