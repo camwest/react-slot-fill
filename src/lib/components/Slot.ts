@@ -99,7 +99,7 @@ export default class Slot extends React.Component<Props, State> {
             throw new Error('Only element children will work here');
           }
           aggElements.push(
-            React.cloneElement(child, { key: index.toString() + index2.toString(), ...fillChildProps2 })
+            React.cloneElement(child, { key: child.props.key || index.toString() + index2.toString(), ...fillChildProps2 })
           );
         });
       } else {
@@ -109,7 +109,7 @@ export default class Slot extends React.Component<Props, State> {
           }
 
           aggElements.push(
-            React.cloneElement(child, { key: index.toString() + index2.toString() })
+            React.cloneElement(child, { key: child.props.key || index.toString() + index2.toString() })
           );
         });
       }
