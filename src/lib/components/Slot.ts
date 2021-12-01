@@ -45,7 +45,7 @@ export default class Slot extends React.Component<Props, State> {
     this.handleComponentChange = this.handleComponentChange.bind(this);
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.context.manager.onComponentsChange(this.props.name, this.handleComponentChange);
   }
 
@@ -57,7 +57,7 @@ export default class Slot extends React.Component<Props, State> {
     return this.state.components.map(c => c.fill);
   }
 
-  componentWillReceiveProps(nextProps: Props) {
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
     if (nextProps.name !== this.props.name) {
       this.context.manager.removeOnComponentsChange(this.props.name, this.handleComponentChange);
 
