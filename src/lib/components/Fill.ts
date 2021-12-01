@@ -13,7 +13,7 @@ export default class Fill extends React.Component<Props, {}> {
     bus: busShape
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.context.bus.emit('fill-mount', {
       fill: this
     });
